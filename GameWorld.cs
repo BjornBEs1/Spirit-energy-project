@@ -54,6 +54,8 @@ namespace Spirit_energy_project
                 Exit();
             }
 
+            Time.Update(gameTime);
+
             inputSystem.Update();
 
 
