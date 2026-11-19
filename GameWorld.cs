@@ -13,6 +13,7 @@ namespace Spirit_energy_project
         private SpriteBatch spriteBatch;
         private InputSystem inputSystem;
         public List<GameObject> GameObjects;
+        public int rounds = 0;
 
         public GameWorld()
         {
