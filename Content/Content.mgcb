@@ -13,3 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin inputFile.json
+/copy:inputFile.json
+

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Spirit_energy_project
 {
-    public class Enemy : GameObject
+    public class GhostHunters : GameObject, IEnemy
     {
     }
 }

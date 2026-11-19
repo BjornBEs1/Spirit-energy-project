@@ -35,7 +35,7 @@ namespace Spirit_energy_project.InputSubsystem
             }
         }
 
-        internal InputState _state;
+        internal InputState _state = new InputState();
         internal InputState InputState
         {
             get => _state;

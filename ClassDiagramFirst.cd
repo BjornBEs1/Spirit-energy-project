@@ -80,8 +80,8 @@
       <FileName>InputSubsystem\InputSystem.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Property Name="InputState" />
       <Property Name="InputProfile" />
+      <Property Name="InputState" />
     </ShowAsAssociation>
   </Class>
   <Class Name="Spirit_energy_project.Player" Collapsed="true">
@@ -91,19 +91,13 @@
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Spirit_energy_project.Enemy" Collapsed="true">
+  <Class Name="Spirit_energy_project.GhostHunters" Collapsed="true">
     <Position X="20.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enemy.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="Spirit_energy_project.GhostHunters" Collapsed="true">
-    <Position X="20.5" Y="10" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>GhostHunters.cs</FileName>
-    </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Spirit_energy_project.Upgrade" Collapsed="true">
     <Position X="15.25" Y="8.5" Width="1.5" />
@@ -126,6 +120,13 @@
       <FileName>InputSubsystem\ActionInputSystem\ActionState.cs</FileName>
     </TypeIdentifier>
   </Struct>
+  <Interface Name="Spirit_energy_project.IEnemy" Collapsed="true">
+    <Position X="20.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="Spirit_energy_project.InputSubsystem.ActionInputSystem.ActionType" Collapsed="true">
     <Position X="17" Y="5.5" Width="1.5" />
     <TypeIdentifier>

@@ -1,31 +1,39 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Spirit_energy_project.InputSubsystem;
+using System.Collections.Generic;
 
 namespace Spirit_energy_project
 {
     public class GameWorld : Game
     {
-        private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private InputSystem inputSystem;
+        public List<GameObject> GameObjects;
 
         public GameWorld()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-        }
 
-        public System.Collections.Generic.List<Spirit_energy_project.GameObject> GameObjects
-        {
-            get => default;
-            set
-            {
-            }
+            new ContentEngineManager(Content);
+
+            inputSystem = new InputSystem();
+
+            GameObjects = new List<GameObject>();
+
+            GameObjects.Add(new Player());
+            // add player
+            // add enemyManager
         }
 
         protected override void Initialize()
         {
+            GameObjects.ForEach(x => x.intInitialize());
+
             // TODO: Add your initialization logic here
 
             base.Initialize();
@@ -33,9 +41,9 @@ namespace Spirit_energy_project
 
         protected override void LoadContent()
         {
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            GameObjects.ForEach(x => x.intLoadContents());
         }
 
         protected override void Update(GameTime gameTime)
@@ -45,6 +53,11 @@ namespace Spirit_energy_project
                 Exit();
             }
 
+            inputSystem.Update();
+
+
+            GameObjects.ForEach(x => x.intUpdate(gameTime));
+
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -53,6 +66,8 @@ namespace Spirit_energy_project
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            GameObjects.ForEach(x => x.intDraw(spriteBatch));
 
             // TODO: Add your drawing code here
 
