@@ -9,6 +9,7 @@ namespace Spirit_energy_project
 {
     internal class EnemyManager : GameObject
     {
+        
         public EnemyManager() 
         { 
             
@@ -16,21 +17,29 @@ namespace Spirit_energy_project
 
         public override void Initialize()
         {
-            
+            SpawnRound();
             base.Initialize();
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (GameWorld.Instance)
+            if (this.children.Count <= 0)
             {
-
+                SpawnRound();
             }
+
             base.Update(gameTime);
         }
         public void SpawnRound()
         {
-
+            for (int i = 0; i < 5 + GameWorld.Instance.rounds; i++)
+            {
+                GhostHunter newGhostHunter = new GhostHunter();
+                newGhostHunter.Initialize();
+                newGhostHunter.LoadContents();
+                addChlid(newGhostHunter, this);
+                children.Add(newGhostHunter);
+            }
         }
     }
 }

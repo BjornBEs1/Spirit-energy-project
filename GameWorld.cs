@@ -9,7 +9,7 @@ namespace Spirit_energy_project
     public class GameWorld : Game
     {
         static internal GameWorld Instance;
-        private GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private InputSystem inputSystem;
         public List<GameObject> GameObjects;
