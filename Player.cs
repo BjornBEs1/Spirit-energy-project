@@ -88,9 +88,5 @@ namespace Spirit_energy_project
                 rotation += 1f;
             }
         }
-        public override void LoadContents()
-        {
-            
-        }
     }
 }
