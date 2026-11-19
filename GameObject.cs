@@ -20,14 +20,49 @@ namespace Spirit_energy_project
         /// <summary>
         /// The objects transform
         /// </summary>
-        // public Transform2D Transform { get; set; }
+        public Transform2D Transform { get; set; }
         public GameObject()
         {
             components = new List<Component>();
 
-            // Transform = new Transform2D();
-            // addComponent(Transform);
+            Transform = new Transform2D();
+            addComponent(Transform);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="component"></param>
+        /// <returns></returns>
+        public bool TryGetComponent<T>(out T component) where T : Component
+        {
+            foreach (Component item in components)
+            {
+                if (item is T tC)
+                {
+                    component = tC;
+                    return true;
+                }
+            }
+            component = null;
+            return false;
+        }
+        internal void addComponent(Component component)
+        {
+            components.Add(component);
+            component.Owner = this;
+            if (component is Collider collider)
+            {
+                collider.OnCollision += OnCollision;
+            }
+            component.componentAdded(this);
+        }
+        public void AddComponent(Component component)
+        {
+            addComponent(component);
+        }
+
         public override void ObjInitialize()
         {
             Initialize();
@@ -68,6 +103,7 @@ namespace Spirit_energy_project
         public virtual void LoadContents() { }
         public virtual void Update(GameTime gameTime) { }
         public virtual void Draw(SpriteBatch spriteBatch) { }
+        public virtual void OnCollision(Collider other) { }
         public virtual void OnDestroy() { }
     }
 }
