@@ -68,7 +68,9 @@ namespace Spirit_energy_project
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            spriteBatch.Begin();
             GameObjects.ForEach(x => x.intDraw(spriteBatch));
+            spriteBatch.End();
 
             // TODO: Add your drawing code here
 
