@@ -1,0 +1,200 @@
+/*
+ * File: InputBinding.cs
+ * File Created: 26 Apr 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 25 May 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using Microsoft.Xna.Framework;
+using System.Diagnostics;
+using System.Text.Json.Serialization;
+
+namespace Spirit_energy_project.InputSubsystem.ActionInputSystem
+{
+    [JsonDerivedType(typeof(FloatAxisBinding), "FloatBinding")]
+    [JsonDerivedType(typeof(BoolKeyBinding), "BoolBinding")]
+    public abstract class InputBinding
+    {
+        [JsonIgnore]
+        public abstract ActionType ReturnType { get; }
+
+        public InputDevice Device { get; set; }
+
+        [JsonIgnore]
+        public abstract BindingType BindingType { get; }
+
+        public abstract void Evaluate(InputSystem system, ref ActionState state);
+    }
+
+    public class FloatAxisBinding : InputBinding
+    {
+        // [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public bool IsRaw { get; set; }
+        public override BindingType BindingType => BindingType.Axis;
+        public override ActionType ReturnType => ActionType.Float;
+        public KeyCode[]? Positive { get; set; }
+        public KeyCode[]? Negative { get; set; }
+        public string[]? ActionPositive { get; set; }
+        public string[]? ActionNegative { get; set; }
+
+        public override void Evaluate(InputSystem system, ref ActionState state)
+        {
+            float value = state.FloatValue;
+
+            int valueChanged = 0;
+            if (Positive != null)
+            {
+                foreach (KeyCode key in Positive)
+                {
+                    if (system.IsKeyDown(key))
+                    {
+                        if (IsRaw)
+                        {
+                            value = 1;
+                        }
+                        else
+                        {
+                            value += 0.05f;
+                        }
+                        valueChanged++;
+                    }
+                }
+            }
+
+            if (Negative != null)
+            {
+                foreach (KeyCode key in Negative)
+                {
+                    if (system.IsKeyDown(key))
+                    {
+                        if (IsRaw)
+                        {
+                            value = -1;
+                        }
+                        else
+                        {
+                            value -= 0.05f;
+                        }
+                        valueChanged++;
+                    }
+                }
+            }
+
+            if (ActionPositive != null)
+            {
+                foreach (string action in ActionPositive)
+                {
+                    if (system.IsActionDown(action))
+                    {
+                        if (IsRaw)
+                        {
+                            value = 1;
+                        }
+                        else
+                        {
+                            value += 0.05f;
+                        }
+                        valueChanged++;
+                    }
+                }
+            }
+
+            if (ActionNegative != null)
+            {
+                foreach (string action in ActionNegative)
+                {
+                    if (system.IsActionDown(action))
+                    {
+                        if (IsRaw)
+                        {
+                            value = -1;
+                        }
+                        else
+                        {
+                            value -= 0.05f;
+                        }
+                        valueChanged++;
+                    }
+                }
+            }
+
+            value = (float)MathHelper.Clamp(value, -1, 1);
+
+            if (valueChanged == 0 && !IsRaw)
+            {
+                float sign = -(float)value;
+                value += sign * 0.1f;
+            }
+            else if (valueChanged == 0 && IsRaw)
+            {
+                value = 0;
+            }
+
+            value = (float)MathHelper.Clamp(value, -1, 1);
+
+            state.FloatValue = value;
+        }
+    }
+    public class BoolKeyBinding : InputBinding
+    {
+        public override BindingType BindingType => BindingType.Button;
+        public override ActionType ReturnType => ActionType.Bool;
+        public KeyCode[]? Keys { get; set; }
+        public string[]? Actions { get; set; }
+
+        public override void Evaluate(InputSystem system, ref ActionState state)
+        {
+            bool down = false;
+            bool pressed = false;
+            bool released = false;
+
+            if (Keys != null)
+            {
+                foreach (KeyCode key in Keys)
+                {
+                    if (system.IsKeyDown(key))
+                    {
+                        down = true;
+                    }
+
+                    if (system.IsKeyPressed(key))
+                    {
+                        pressed = true;
+                    }
+
+                    if (system.IsKeyReleased(key))
+                    {
+                        released = true;
+                    }
+                }
+            }
+            if (Actions != null)
+            {
+                foreach (string action in Actions)
+                {
+                    if (system.IsActionDown(action))
+                    {
+                        down = true;
+                    }
+
+                    if (system.IsActionPressed(action))
+                    {
+                        pressed = true;
+                    }
+
+                    if (system.IsActionReleased(action))
+                    {
+                        released = true;
+                    }
+                }
+            }
+
+            state.BoolDown = down;
+            state.BoolPressed = pressed;
+            state.BoolReleased = released;
+        }
+    }
+}

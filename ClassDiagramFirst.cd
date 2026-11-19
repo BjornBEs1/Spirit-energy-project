@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Spirit_energy_project.GameWorld" Collapsed="true">
+    <Position X="15.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAAAAAwAAAAAAAAAAAAAAAAACAIAAAAAAAAQ=</HashCode>
+      <FileName>GameWorld.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Program" Collapsed="true">
+    <Position X="13.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.GameObject" Collapsed="true">
+    <Position X="18.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameObject.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.InputSubsystem.ActionInputSystem.InputActionDefinition" Collapsed="true">
+    <Position X="15.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAEAAAAAAAAQ=</HashCode>
+      <FileName>InputSubsystem\ActionInputSystem\InputActionDefinition.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.InputSubsystem.ActionInputSystem.InputBinding" Collapsed="true">
+    <Position X="10.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAgAAAAAAAgAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>InputSubsystem\ActionInputSystem\InputBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.InputSubsystem.ActionInputSystem.FloatAxisBinding" Collapsed="true">
+    <Position X="11.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAACAAAAAEAAAAAAAAgAgAAAAAAAAAAAAAEAACEAAA=</HashCode>
+      <FileName>InputSubsystem\ActionInputSystem\InputBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.InputSubsystem.ActionInputSystem.BoolKeyBinding" Collapsed="true">
+    <Position X="9.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAEAAAAACAAAAgAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>InputSubsystem\ActionInputSystem\InputBinding.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.InputSubsystem.ActionInputSystem.InputProfile" Collapsed="true">
+    <Position X="19.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAIAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputSubsystem\ActionInputSystem\InputProfile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.InputSubsystem.Input" Collapsed="true">
+    <Position X="17" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAogAAAAAAAUAAAAAAAAAAAAiAAEAAIiAEQAACAAA=</HashCode>
+      <FileName>InputSubsystem\Input.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="InputSystem" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Spirit_energy_project.InputSubsystem.InputState" Collapsed="true">
+    <Position X="17" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEgAAAAAAAAAEAAAQAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>InputSubsystem\InputState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.InputSubsystem.InputSystem" Collapsed="true">
+    <Position X="17" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEQEIFQAAACEEQQAAEAACAAAAEiAgEAAIiAAUBACAAA=</HashCode>
+      <FileName>InputSubsystem\InputSystem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="InputState" />
+      <Property Name="InputProfile" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Spirit_energy_project.Player" Collapsed="true">
+    <Position X="17" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.Enemy" Collapsed="true">
+    <Position X="20.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.GhostHunters" Collapsed="true">
+    <Position X="20.5" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GhostHunters.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.Upgrade" Collapsed="true">
+    <Position X="15.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Upgrade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spirit_energy_project.PlayerAbility" Collapsed="true">
+    <Position X="17" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>PlayerWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="Spirit_energy_project.InputSubsystem.ActionInputSystem.ActionState" Collapsed="true">
+    <Position X="17" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAAAAAAAAAAAQABAAABAEAAAAAAA=</HashCode>
+      <FileName>InputSubsystem\ActionInputSystem\ActionState.cs</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Enum Name="Spirit_energy_project.InputSubsystem.ActionInputSystem.ActionType" Collapsed="true">
+    <Position X="17" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAEgAAA=</HashCode>
+      <FileName>InputSubsystem\ActionInputSystem\ActionType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Spirit_energy_project.InputSubsystem.ActionInputSystem.BindingType" Collapsed="true">
+    <Position X="18.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAAAAAAAAQAAAAAAAAAAAAAAgAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputSubsystem\ActionInputSystem\BindingType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Spirit_energy_project.InputSubsystem.ActionInputSystem.InputDevice" Collapsed="true">
+    <Position X="17" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>InputSubsystem\ActionInputSystem\InputDevice.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Spirit_energy_project.InputSubsystem.ButtonInputState" Collapsed="true">
+    <Position X="20.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAEAAA=</HashCode>
+      <FileName>InputSubsystem\ButtonInputState.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Spirit_energy_project.InputSubsystem.KeyCode" Collapsed="true">
+    <Position X="18.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AaKq439VQcAsyowIExETSCoVGi1UVBsKyAGg/v//YUs=</HashCode>
+      <FileName>InputSubsystem\Keys.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Spirit_energy_project.InputSubsystem.MouseButton" Collapsed="true">
+    <Position X="20.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABCACQAAgAAAA=</HashCode>
+      <FileName>InputSubsystem\Keys.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

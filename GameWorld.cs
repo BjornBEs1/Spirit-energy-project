@@ -4,16 +4,24 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Spirit_energy_project
 {
-    public class Game1 : Game
+    public class GameWorld : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public Game1()
+        public GameWorld()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+        }
+
+        public System.Collections.Generic.List<Spirit_energy_project.GameObject> GameObjects
+        {
+            get => default;
+            set
+            {
+            }
         }
 
         protected override void Initialize()
@@ -33,7 +41,9 @@ namespace Spirit_energy_project
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
                 Exit();
+            }
 
             // TODO: Add your update logic here
 
