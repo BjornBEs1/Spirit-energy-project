@@ -26,6 +26,7 @@ namespace Spirit_energy_project
             GameObjects = new List<GameObject>();
 
             GameObjects.Add(new Player());
+            GameObjects.Add(new EnemyManager());
             // add player
             // add enemyManager
         }
