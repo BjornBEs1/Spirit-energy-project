@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +12,13 @@ namespace Spirit_energy_project
     {
         
         public EnemyManager() 
-        { 
-            
+        {
+            SpawnRound();
         }
 
         public override void Initialize()
         {
-            SpawnRound();
+            
             base.Initialize();
         }
 
@@ -34,6 +35,7 @@ namespace Spirit_energy_project
         {
             for (int i = 0; i < 5 + GameWorld.Instance.rounds; i++)
             {
+                Debug.WriteLine("Spawned enemy");
                 GhostHunter newGhostHunter = new GhostHunter();
                 newGhostHunter.Initialize();
                 newGhostHunter.LoadContents();

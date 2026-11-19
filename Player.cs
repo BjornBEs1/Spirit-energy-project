@@ -22,7 +22,7 @@ namespace Spirit_energy_project
         private float rotation;
         public override void Update(GameTime gameTime)
         {
-            Debug.WriteLine("test");
+            
             HandleInput();
             Transform.Position += velocity * speed*Time.DeltaTime;
             if (velocity.X == 0)

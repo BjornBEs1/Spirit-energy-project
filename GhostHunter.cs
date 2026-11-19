@@ -45,6 +45,7 @@ namespace Spirit_energy_project
        
         public override void LoadContents()
         {
+            ContentEngineManager.Instance.LoadTexture2D("GhostHunterSprite", "GhostSpriteSheet");
             base.LoadContents();
         }
         public override void Update(GameTime gameTime)
