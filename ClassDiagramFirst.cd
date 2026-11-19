@@ -3,7 +3,7 @@
   <Class Name="Spirit_energy_project.GameWorld" Collapsed="true">
     <Position X="15.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAEAAAAAwAAAAAAAAAAAAAAAAACAIAAAAAAAAQ=</HashCode>
+      <HashCode>AAQAAEAEQAAAAwAAAAAAAAAAAAAAAAgAAAAAAAAAAAQ=</HashCode>
       <FileName>GameWorld.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -17,7 +17,7 @@
   <Class Name="Spirit_energy_project.GameObject" Collapsed="true">
     <Position X="18.75" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQBAAAgAAAIgwACDACAAAQAAABAAAAAIAQgAAAAEAQ=</HashCode>
       <FileName>GameObject.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -87,17 +87,9 @@
   <Class Name="Spirit_energy_project.Player" Collapsed="true">
     <Position X="17" Y="8.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="Spirit_energy_project.GhostHunters" Collapsed="true">
-    <Position X="20.5" Y="8.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Enemy.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Spirit_energy_project.Upgrade" Collapsed="true">
     <Position X="15.25" Y="8.5" Width="1.5" />
@@ -123,7 +115,7 @@
   <Interface Name="Spirit_energy_project.IEnemy" Collapsed="true">
     <Position X="20.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>IEnemy.cs</FileName>
     </TypeIdentifier>
   </Interface>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spirit_energy_project
 {
-    internal class GhostHunter : GameObject
+    internal class GhostHunter : GameObject, IEnemy
     {
     }
 }

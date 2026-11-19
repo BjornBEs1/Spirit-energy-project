@@ -13,5 +13,9 @@ namespace Spirit_energy_project
         {
             Debug.WriteLine("test");
         }
+        public override void LoadContents()
+        {
+            
+        }
     }
 }
