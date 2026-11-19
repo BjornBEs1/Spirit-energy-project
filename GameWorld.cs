@@ -8,6 +8,7 @@ namespace Spirit_energy_project
 {
     public class GameWorld : Game
     {
+        static internal GameWorld Instance;
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private InputSystem inputSystem;
@@ -15,6 +16,11 @@ namespace Spirit_energy_project
 
         public GameWorld()
         {
+            if (Instance != null)
+            {
+                return;
+            }
+            Instance = this;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
