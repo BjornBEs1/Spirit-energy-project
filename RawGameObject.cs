@@ -35,16 +35,16 @@ namespace Spirit_energy_project
         internal void intUpdate(GameTime gameTime)
         {
             ObjUpdate(gameTime);
-            // List<GameObject> objects = children.ToList();
-            // objects.ForEach((x) =>
-            // {
-            //     x.intUpdate(gameTime);
-            // });
+            List<GameObject> objects = children.ToList();
+            objects.ForEach((x) =>
+            {
+                x.intUpdate(gameTime);
+            });
         }
         internal void intDraw(SpriteBatch spriteBatch)
         {
             ObjDraw(spriteBatch);
-            // children.ForEach((x) => x.intDraw(gameTime, spriteBatch));
+            children.ForEach((x) => x.intDraw(spriteBatch));
         }
 
         internal void DrawBegin(SpriteBatch spriteBatch)

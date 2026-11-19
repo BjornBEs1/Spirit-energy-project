@@ -17,6 +17,8 @@ namespace Spirit_energy_project
 
         internal List<Component> components;
 
+        protected Vector2 velocity { get; set; }
+
         /// <summary>
         /// The objects transform
         /// </summary>
@@ -75,10 +77,10 @@ namespace Spirit_energy_project
         {
             components.ForEach((x) =>
             {
-                // if (x is IRendererComponent renderer)
-                // {
-                //     renderer.Update();
-                // }
+                if (x is IRendererComponent renderer)
+                {
+                    renderer.Update();
+                }
             });
             Update(gameTime);
         }
@@ -97,6 +99,7 @@ namespace Spirit_energy_project
         public void Destroy()
         {
             Parent.removeChild(this);
+            OnDestroy();
         }
 
         public virtual void Initialize() { }
