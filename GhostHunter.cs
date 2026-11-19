@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Spirit_energy_project
 {
-    internal class GhostHunter : GameObject
+    internal class GhostHunter : GameObject, IEnemy
     {
+        int hp;
+        int maxHp;
+        public int MaxHp { get => maxHp; set => maxHp = value; }
+        public int Hp { get => hp; set => hp = value; }
     }
 }

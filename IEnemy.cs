@@ -7,5 +7,7 @@ namespace Spirit_energy_project
 {
     public interface IEnemy
     {
+        public int MaxHp { get; set; }
+        public int Hp { get; set; }
     }
 }
