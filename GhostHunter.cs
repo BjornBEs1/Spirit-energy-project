@@ -67,9 +67,10 @@ namespace Spirit_energy_project
         public override void LoadContents()
         {
             sprite = ContentEngineManager.Instance.GetTexture2D("GhostHunterSprite");
-            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "RightWalk", new Rectangle(0, 0, 64, 32), 32, 32);
-            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "LeftWalk", new Rectangle(0, 32, 64, 32), 32, 32);
-            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "Attack", new Rectangle(0, 32, 32, 32), 32, 32);
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "LeftWalk", new Rectangle(0, 0, 64, 32), 32, 32);
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "RightWalk", new Rectangle(0, 32, 64, 32), 32, 32);
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "AttackRight", new Rectangle(0, 32, 32, 32), 32, 32);
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "AttackLeft", new Rectangle(0, 0, 32, 32), 32, 32);
             base.LoadContents();
         }
         public override void Update(GameTime gameTime)
@@ -82,23 +83,23 @@ namespace Spirit_energy_project
             {
                 if (isAttacking)
                 {
-                    controller.SetCurrentSheet("Attack");
+                    controller.SetCurrentSheet("AttackRight");
                 }
                 else
                 {
-                    controller.SetCurrentSheet("LeftWalk");
+                    controller.SetCurrentSheet("RightWalk");
                 }
             }
             else
             {
                 if (isAttacking)
                 {
-                    controller.SetCurrentSheet("Attack");
+                    controller.SetCurrentSheet("AttackLeft");
                     
                 }
                 else
                 {
-                    controller.SetCurrentSheet("RightWalk");
+                    controller.SetCurrentSheet("LeftWalk");
                 }
             }
 
