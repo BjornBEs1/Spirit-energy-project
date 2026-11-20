@@ -14,7 +14,7 @@ namespace Spirit_energy_project
         private Texture2D ghostHunterSprite;
         public EnemyManager() 
         {
-            SpawnRound();
+            
         }
 
         public override void Initialize()

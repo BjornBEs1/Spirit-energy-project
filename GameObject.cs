@@ -18,6 +18,7 @@ namespace Spirit_energy_project
         internal List<Component> components;
 
         protected Vector2 velocity { get; set; }
+        
 
         /// <summary>
         /// The objects transform

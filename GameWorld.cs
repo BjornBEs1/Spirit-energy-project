@@ -13,6 +13,8 @@ namespace Spirit_energy_project
         private SpriteBatch spriteBatch;
         private InputSystem inputSystem;
         public List<GameObject> GameObjects;
+        public Player Player;
+
         public int rounds = 0;
 
         public GameWorld()
@@ -26,13 +28,15 @@ namespace Spirit_energy_project
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
+            Player = new Player();
+
             new ContentEngineManager(Content);
 
             inputSystem = new InputSystem();
 
             GameObjects = new List<GameObject>();
 
-            GameObjects.Add(new Player());
+            GameObjects.Add(Player);
             GameObjects.Add(new EnemyManager());
             // add player
             // add enemyManager

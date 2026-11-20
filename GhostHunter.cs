@@ -16,9 +16,10 @@ namespace Spirit_energy_project
         private Vector2 direction;
         private Texture2D sprite;
         private Random random = new Random();
+        private Rectangle CurrentSprite = new Rectangle(0,0,32,32);
         public GhostHunter()
         {
-            speed = 100f;
+            speed = 50f;
             direction = Vector2.Zero;
             int randomPosition = random.Next(1, 4);
             if (randomPosition == 1)
@@ -37,8 +38,6 @@ namespace Spirit_energy_project
             {
                 Transform.Position = new Vector2(GraphicsDeviceManager.DefaultBackBufferWidth, random.Next(0, GraphicsDeviceManager.DefaultBackBufferHeight));
             }
-
-
         }
 
         public int MaxHp { get => maxHp; set => maxHp = value; }
@@ -51,7 +50,27 @@ namespace Spirit_energy_project
         }
         public override void Update(GameTime gameTime)
         {
+            Vector2 playerPos = GameWorld.Instance.Player.Transform.Position;
+            Vector2 difference = Transform.Position - playerPos;
+            
+            direction = Vector2.Normalize(-difference);
+            if (Vector2.Distance(Transform.Position, playerPos) <= 50f)
+            {
+                speed = 0;
+            }
+            else
+            {
+                speed = 100f;
+            }
+            Move(gameTime);
             base.Update(gameTime);
+            
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
+            
+            base.Draw(spriteBatch);
         }
         public void Move(GameTime gameTime)
         {
