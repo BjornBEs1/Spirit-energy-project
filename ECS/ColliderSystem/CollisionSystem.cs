@@ -32,6 +32,11 @@ namespace Spirit_energy_project.ECS.ColliderSystem
                     Collider a = colliders[i];
                     Collider b = colliders[j];
 
+                    if (a == b)
+                    {
+                        continue;
+                    }
+
                     if (!a.GetWorldBounds().Intersects(b.GetWorldBounds()))
                         continue;
 

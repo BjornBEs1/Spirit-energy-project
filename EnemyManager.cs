@@ -1,4 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * File: EnemyManager.cs
+ * File Created: 20 Nov 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 20 Nov 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -48,6 +58,7 @@ namespace Spirit_energy_project
                 GhostHunter newGhostHunter = new GhostHunter();
                 newGhostHunter.Initialize();
                 newGhostHunter.LoadContents();
+                newGhostHunter.Name = $"ghost{i}";
                 addChlid(newGhostHunter, this);
                 children.Add(newGhostHunter);
             }
