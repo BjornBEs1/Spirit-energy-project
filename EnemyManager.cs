@@ -12,6 +12,7 @@ namespace Spirit_energy_project
     internal class EnemyManager : GameObject
     {
         private Texture2D ghostHunterSprite;
+        
         public EnemyManager() 
         {
             
@@ -26,6 +27,7 @@ namespace Spirit_energy_project
         public override void LoadContents()
         {
             ContentEngineManager.Instance.LoadTexture2D("GhostHunterSprite", "Enemy");
+            
             base.LoadContents();
         }
 

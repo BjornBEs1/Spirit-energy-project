@@ -17,9 +17,17 @@ namespace Spirit_energy_project
         private Texture2D sprite;
         private Random random = new Random();
         private bool isAttacking = false;
+        AnimationController controller;
         private Rectangle CurrentSprite = new Rectangle(0,0,32,32);
+        
         public GhostHunter()
         {
+            BoxCollider collider = new BoxCollider();
+            AddComponent(collider);
+            SpriteRenderer spriteRenderer = new SpriteRenderer();
+            AddComponent(spriteRenderer);
+            controller = new AnimationController(spriteRenderer);
+            AddComponent(controller);
             maxHp = 10;
             hp = maxHp;
             speed = 50f;
@@ -49,6 +57,9 @@ namespace Spirit_energy_project
         public override void LoadContents()
         {
             sprite = ContentEngineManager.Instance.GetTexture2D("GhostHunterSprite");
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "RightWalk", new Rectangle(0, 0, 64, 32), 32, 32);
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "LeftWalk", new Rectangle(0, 32, 64, 32), 32, 32);
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "Attack", new Rectangle(0, 32, 32, 32), 32, 32);
             base.LoadContents();
         }
         public override void Update(GameTime gameTime)
@@ -61,23 +72,23 @@ namespace Spirit_energy_project
             {
                 if (isAttacking)
                 {
-                    CurrentSprite = new Rectangle(0, 33, 32, 32);
+                    controller.SetCurrentSheet("Attack");
                 }
                 else
                 {
-                    CurrentSprite = new Rectangle(32, 33, 32, 32);
+                    controller.SetCurrentSheet("LeftWalk");
                 }
             }
             else
             {
                 if (isAttacking)
                 {
-                    CurrentSprite = new Rectangle(0, 0, 32, 32);
+                    controller.SetCurrentSheet("Attack");
                     
                 }
                 else
                 {
-                    CurrentSprite = new Rectangle(32, 0, 32, 32);
+                    controller.SetCurrentSheet("LeftWalk");
                 }
             }
 
@@ -101,14 +112,9 @@ namespace Spirit_energy_project
             base.Draw(spriteBatch);
         }
 
-        public override void OnCollision(Collider other)
-        {
-            if (other is PlayerAbility)
-            {
-                
-            }
-            base.OnCollision(other);
-        }
+        
+
+        
         public void Move(GameTime gameTime)
         {
             Transform.Position += ((direction * speed) * Time.DeltaTime);
