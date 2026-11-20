@@ -16,9 +16,12 @@ namespace Spirit_energy_project
         private Vector2 direction;
         private Texture2D sprite;
         private Random random = new Random();
+        private bool isAttacking = false;
         private Rectangle CurrentSprite = new Rectangle(0,0,32,32);
         public GhostHunter()
         {
+            maxHp = 10;
+            hp = maxHp;
             speed = 50f;
             direction = Vector2.Zero;
             int randomPosition = random.Next(1, 4);
@@ -54,15 +57,38 @@ namespace Spirit_energy_project
             Vector2 difference = Transform.Position - playerPos;
             
             direction = Vector2.Normalize(-difference);
-
+            if (difference.X < 0)
+            {
+                if (isAttacking)
+                {
+                    CurrentSprite = new Rectangle(0, 33, 32, 32);
+                }
+                else
+                {
+                    CurrentSprite = new Rectangle(32, 33, 32, 32);
+                }
+            }
+            else
+            {
+                if (isAttacking)
+                {
+                    CurrentSprite = new Rectangle(0, 0, 32, 32);
+                    
+                }
+                else
+                {
+                    CurrentSprite = new Rectangle(32, 0, 32, 32);
+                }
+            }
 
             if (Vector2.Distance(Transform.Center, playerPos) > 80f)
             {
                 Move(gameTime);
+                isAttacking = false;
             }
             else
             {
-                
+                isAttacking = true;
             }
             
             base.Update(gameTime);
@@ -77,7 +103,10 @@ namespace Spirit_energy_project
 
         public override void OnCollision(Collider other)
         {
-
+            if (other is PlayerAbility)
+            {
+                
+            }
             base.OnCollision(other);
         }
         public void Move(GameTime gameTime)
