@@ -1,4 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * File: Transform2D.cs
+ * File Created: 20 Nov 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 20 Nov 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +20,7 @@ namespace Spirit_energy_project
     public class Transform2D : Component
     {
         public Vector2 Position { get; set; }
+        public float Rotation { get; set; }
         public Vector2 Scale { get; set; }
 
         public Vector2 Center => new Vector2(Scale.X / 2, Scale.Y / 2) + Position;
