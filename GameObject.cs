@@ -45,6 +45,11 @@ namespace Spirit_energy_project
             addComponent(Transform);
         }
 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(IsStatic, Name, velocity);
+        }
+
         /// <summary>
         /// 
         /// </summary>

@@ -85,5 +85,15 @@ namespace Spirit_energy_project
         internal override void componentAdded(GameObject owner)
         {
         }
+        public override int GetHashCode()
+                    => HashCode.Combine(box, Bounds, OffsetX, OffsetY, IsTrigger, IsTouching, Owner);
+        public override bool Equals(object obj)
+        {
+            if (obj is CollisionPair other && Equals(other))
+            {
+                return true;
+            }
+            return base.Equals(obj);
+        }
     }
 }
