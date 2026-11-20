@@ -60,7 +60,7 @@ namespace Spirit_energy_project
         {
             if (currentTexture != null)
             {
-                spriteBatch.Draw(currentTexture, Owner.Transform.Position, srcRectangle, Color.White, Owner.Transform.Rotation, Origin, Owner.Transform.Scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(currentTexture, Owner.Transform.Position, srcRectangle, Color.White, MathHelper.ToRadians(Owner.Transform.Rotation), Origin, Owner.Transform.Scale, SpriteEffects.None, 0f);
             }
         }
     }

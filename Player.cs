@@ -21,15 +21,8 @@ using Spirit_energy_project.InputSubsystem;
 namespace Spirit_energy_project
 {
     public class Player : GameObject
-    {
-        private Texture2D ghostSprite;
-        private Rectangle currentFrame;
-        private Rectangle right = new Rectangle(0, 0, 32, 32);
-        private Rectangle left = new Rectangle(0, 32, 32, 32);
-        private Rectangle down = new Rectangle(0, 64, 32, 32);
-        private Rectangle up = new Rectangle(0, 96, 32, 32);
+    {        
         private float speed = 200;
-        private float rotation;
         AnimationController controller;
         SpriteRenderer renderer;
         public Player()
@@ -56,7 +49,6 @@ namespace Spirit_energy_project
         }
         public override void Initialize()
         {
-            currentFrame = down;
             Transform.Position = new Vector2(100, 100);
         }
         public override void LoadContents()
@@ -65,6 +57,8 @@ namespace Spirit_energy_project
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_left", new Rectangle(0, 32, 128, 32), 32, 32);
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_down", new Rectangle(0, 64, 128, 32), 32, 32);
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_up", new Rectangle(0, 96, 128, 32), 32, 32);
+            controller.SetSpriteSheet("GhostPunch01", "GhostFistSprite", "punch01", new Rectangle(0, 0, 128, 64), 32, 64);
+            controller.SetSpriteSheet("GhostPunch02", "GhostFistSprite", "punch02", new Rectangle(0, 64, 128, 64), 32, 64);
         }
         protected void HandleInput()
         {
@@ -72,19 +66,16 @@ namespace Spirit_energy_project
 
             if (Input.IsKeyDown(KeyCode.Up))
             {
-                currentFrame = up;
                 controller.SetCurrentSheet("ghost_up");
                 velocity += new Vector2(0, -1);
             }
             if (Input.IsKeyDown(KeyCode.Down))
-            {
-                currentFrame = down;
+            {                
                 controller.SetCurrentSheet("ghost_down");
                 velocity += new Vector2(0, 1);
             }
             if (Input.IsKeyDown(KeyCode.Left))
             {
-                currentFrame = left;
                 controller.SetCurrentSheet("ghost_left");
                 velocity += new Vector2(-1, 0);
                 if (Transform.Rotation > -20f)
@@ -93,7 +84,6 @@ namespace Spirit_energy_project
             if (Input.IsKeyDown(KeyCode.Right))
             {
                 controller.SetCurrentSheet("ghost_right");
-                currentFrame = right;
                 velocity += new Vector2(1, 0);
                 if (Transform.Rotation < 20)
                     Transform.Rotation += 2f;
@@ -102,6 +92,11 @@ namespace Spirit_energy_project
             if (velocity != Vector2.Zero)
             {
                 velocity.Normalize();
+            }
+
+            if (Input.IsKeyDown(KeyCode.Space))
+            {
+                //Instantiate a PlayerWeapon
             }
         }
         private void NormalizeRotation()
