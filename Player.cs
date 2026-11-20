@@ -38,6 +38,7 @@ namespace Spirit_energy_project
             controller = new AnimationController(renderer);
             addComponent(renderer);
             addComponent(controller);
+            renderer.Origin = new Vector2(16, 8);
         }
         public override void Update(GameTime gameTime)
         {
@@ -86,16 +87,16 @@ namespace Spirit_energy_project
                 currentFrame = left;
                 controller.SetCurrentSheet("ghost_left");
                 velocity += new Vector2(-1, 0);
-                if (rotation > -20f)
-                    rotation -= 2f;
+                if (Transform.Rotation > -20f)
+                    Transform.Rotation -= 2f;
             }
             if (Input.IsKeyDown(KeyCode.Right))
             {
                 controller.SetCurrentSheet("ghost_right");
                 currentFrame = right;
                 velocity += new Vector2(1, 0);
-                if (rotation < 20)
-                    rotation += 2f;
+                if (Transform.Rotation < 20)
+                    Transform.Rotation += 2f;
             }
 
             if (velocity != Vector2.Zero)
@@ -105,13 +106,13 @@ namespace Spirit_energy_project
         }
         private void NormalizeRotation()
         {
-            if (rotation > 0)
+            if (Transform.Rotation > 0)
             {
-                rotation -= 1f;
+                Transform.Rotation -= 1f;
             }
-            if (rotation < 0)
+            if (Transform.Rotation < 0)
             {
-                rotation += 1f;
+                Transform.Rotation += 1f;
             }
         }
     }
