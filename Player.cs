@@ -51,7 +51,7 @@ namespace Spirit_energy_project
         public override void Draw(SpriteBatch spriteBatch)
         {
             controller.Draw(spriteBatch);
-            // spriteBatch.Draw(ghostSprite, Transform.Position, null, Color.White, MathHelper.ToRadians(rotation), new Vector2(16, 8), 1f, SpriteEffects.None, 0f);
+            //spriteBatch.Draw(ghostSprite, Transform.Position, null, Color.White, MathHelper.ToRadians(rotation), new Vector2(16, 8), 1f, SpriteEffects.None, 0f);
         }
         public override void Initialize()
         {
