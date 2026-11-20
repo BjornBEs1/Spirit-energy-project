@@ -1,15 +1,26 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿/*
+ * File: GameObject.cs
+ * File Created: 20 Nov 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 20 Nov 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Spirit_energy_project
 {
     public abstract class GameObject : RawGameObject
     {
+        public bool IsStatic { get; set; }
         /// <summary>
         /// The name of the given object
         /// </summary>
@@ -17,8 +28,10 @@ namespace Spirit_energy_project
 
         internal List<Component> components;
 
-        protected Vector2 velocity { get; set; }
-        
+        public Vector2 velocity { get; set; }
+
+        internal readonly List<Collider> _colliderComponents = new List<Collider>();
+
 
         /// <summary>
         /// The objects transform
@@ -57,7 +70,13 @@ namespace Spirit_energy_project
             component.Owner = this;
             if (component is Collider collider)
             {
-                collider.OnCollision += OnCollision;
+                _colliderComponents.Add(collider);
+                collider.OnCollisionEnter += OnCollisionEnter;
+                collider.OnCollisionStay += OnCollisionStay;
+                collider.OnCollisionExit += OnCollisionExit;
+                collider.OnTriggerEnter += OnTriggerEnter;
+                collider.OnTriggerStay += OnTriggerStay;
+                collider.OnTriggerExit += OnTriggerExit;
             }
             component.componentAdded(this);
         }
@@ -107,7 +126,12 @@ namespace Spirit_energy_project
         public virtual void LoadContents() { }
         public virtual void Update(GameTime gameTime) { }
         public virtual void Draw(SpriteBatch spriteBatch) { }
-        public virtual void OnCollision(Collider other) { }
+        public virtual void OnCollisionEnter(Collider other) { }
+        public virtual void OnCollisionStay(Collider other) { }
+        public virtual void OnCollisionExit(Collider other) { }
+        public virtual void OnTriggerEnter(Collider other) { }
+        public virtual void OnTriggerStay(Collider other) { }
+        public virtual void OnTriggerExit(Collider other) { }
         public virtual void OnDestroy() { }
     }
 }

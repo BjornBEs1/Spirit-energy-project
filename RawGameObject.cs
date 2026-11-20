@@ -1,10 +1,20 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿/*
+ * File: RawGameObject.cs
+ * File Created: 20 Nov 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 20 Nov 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Spirit_energy_project
 {
@@ -36,10 +46,20 @@ namespace Spirit_energy_project
         {
             ObjUpdate(gameTime);
             List<GameObject> objects = children.ToList();
+            List<Collider> colliders = new List<Collider>();
             objects.ForEach((x) =>
             {
+                colliders.AddRange(x._colliderComponents);
                 x.intUpdate(gameTime);
             });
+            PhysicsStep(colliders);
+        }
+        private void PhysicsStep(List<Collider> lastFrameColliders)
+        {
+            for (int iteration = 0; iteration < 4; iteration++)
+            {
+                GameWorld.Instance.collisionSystem.Step(lastFrameColliders);
+            }
         }
         internal void intDraw(SpriteBatch spriteBatch)
         {

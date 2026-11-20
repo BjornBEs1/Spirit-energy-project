@@ -1,8 +1,19 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * File: GameWorld.cs
+ * File Created: 20 Nov 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 20 Nov 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Spirit_energy_project.ECS.ColliderSystem;
 using Spirit_energy_project.InputSubsystem;
-using System.Collections.Generic;
 
 namespace Spirit_energy_project
 {
@@ -14,11 +25,13 @@ namespace Spirit_energy_project
         private InputSystem inputSystem;
         public List<GameObject> GameObjects;
         public Player Player;
+        internal CollisionSystem collisionSystem;
 
         public int rounds = 0;
 
         public GameWorld()
         {
+            collisionSystem = new CollisionSystem();
             if (Instance != null)
             {
                 return;
