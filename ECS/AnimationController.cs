@@ -1,17 +1,29 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
+﻿/*
+ * File: AnimationController.cs
+ * File Created: 20 Nov 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 20 Nov 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Spirit_energy_project
 {
     public class AnimationController : Component, IRendererComponent
     {
-        internal string spriteSheet;
+        internal Dictionary<string, Tileset> spriteSheetTexture;
+        internal TextureRegion textureRegion;
+        internal Texture2D spriteSheetTexture2D;
         internal List<string> frames;
         internal List<Texture2D> textureFrames;
         internal IRendererComponent renderer;
@@ -37,10 +49,16 @@ namespace Spirit_energy_project
         internal override void componentAdded(GameObject owner)
         {
         }
-        public void SetSpriteSheet(string sprite, string path)
+        public void SetSpriteSheet(string sprite, string path, string tileSetKey, Rectangle sourceRectangle, int spriteWidth, int spriteHeight)
         {
-            ContentEngineManager.Instance.LoadTexture2D(sprite, path);
-            spriteSheet = sprite;
+            if (spriteSheetTexture2D == null)
+            {
+                spriteSheetTexture = new Dictionary<string, Tileset>();
+                ContentEngineManager.Instance.LoadTexture2D(sprite, path);
+                spriteSheetTexture2D = ContentEngineManager.Instance.GetTexture2D(sprite);
+            }
+            textureRegion = new TextureRegion(spriteSheetTexture2D, sourceRectangle);
+            spriteSheetTexture.Add(tileSetKey, new Tileset(textureRegion, spriteWidth, spriteHeight));
         }
         public void SetFrames(string[] _frames, string[] _paths)
         {
@@ -79,12 +97,11 @@ namespace Spirit_energy_project
         {
             int animIndex = (int)Math.Clamp(animTime, 0, animCount);
 
-            if (string.IsNullOrEmpty(spriteSheet))
+            if (spriteSheetTexture != null)
             {
 
             }
-
-            if (textureFrames.Count > 0)
+            else if (textureFrames.Count > 0)
             {
                 if (textureFrames[animIndex] == null)
                 {
