@@ -1,4 +1,14 @@
-﻿using Microsoft.Xna.Framework.Content;
+﻿/*
+ * File: ContentEngineManager.cs
+ * File Created: 20 Nov 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 20 Nov 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -52,6 +62,14 @@ namespace Spirit_energy_project
 
         public void LoadTexture2D(string key, string path)
         {
+            if (contentKeyCache.TryGetValue(key, out string path1))
+            {
+                if (path1 == path)
+                {
+                    return;
+                }
+                throw new Exception();
+            }
             contentKeyCache.Add(key, path);
         }
 
