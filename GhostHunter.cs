@@ -14,6 +14,7 @@ namespace Spirit_energy_project
         int maxHp;
         private float speed;
         private Vector2 direction;
+        private Texture2D sprite;
         private Random random = new Random();
         public GhostHunter()
         {
@@ -45,7 +46,7 @@ namespace Spirit_energy_project
        
         public override void LoadContents()
         {
-            
+            sprite = ContentEngineManager.Instance.GetTexture2D("GhostHunterSprite");
             base.LoadContents();
         }
         public override void Update(GameTime gameTime)

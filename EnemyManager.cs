@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,7 +11,7 @@ namespace Spirit_energy_project
 {
     internal class EnemyManager : GameObject
     {
-        
+        private Texture2D ghostHunterSprite;
         public EnemyManager() 
         {
             SpawnRound();
@@ -20,6 +21,12 @@ namespace Spirit_energy_project
         {
             
             base.Initialize();
+        }
+
+        public override void LoadContents()
+        {
+            ContentEngineManager.Instance.LoadTexture2D("GhostHunterSprite", "Enemy");
+            base.LoadContents();
         }
 
         public override void Update(GameTime gameTime)
