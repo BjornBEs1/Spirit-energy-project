@@ -56,7 +56,7 @@ namespace Spirit_energy_project.ECS.ColliderSystem
         internal void ResolveCollision(Collider a, Collider b)
         {
             // Only resolve if exactly one is dynamic
-            if (a.Owner.Parent.IsStatic == b.Owner.Parent.IsStatic)
+            if (a.Owner.IsStatic == b.Owner.IsStatic)
                 return;
 
             if (a.IsTrigger || b.IsTrigger)
@@ -64,8 +64,8 @@ namespace Spirit_energy_project.ECS.ColliderSystem
                 return;
             }
 
-            Collider dynamicColl = a.Owner.Parent.IsStatic ? b : a;
-            Collider staticColl = a.Owner.Parent.IsStatic ? a : b;
+            Collider dynamicColl = a.Owner.IsStatic ? b : a;
+            Collider staticColl = a.Owner.IsStatic ? a : b;
 
             Vector2 push = CollisionResolver.ComputePushOut(
                 dynamicColl.GetWorldBounds(),
@@ -75,7 +75,7 @@ namespace Spirit_energy_project.ECS.ColliderSystem
             if (push == Vector2.Zero)
                 return;
 
-            if (dynamicColl.Owner.Parent.TryGetComponent(out Transform2D parent))
+            if (dynamicColl.Owner.TryGetComponent(out Transform2D parent))
             {
                 parent.Position += push;
                 dynamicColl.Owner.velocity = new Vector2();

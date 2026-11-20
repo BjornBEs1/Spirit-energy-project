@@ -1,4 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * File: GhostHunter.cs
+ * File Created: 20 Nov 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 20 Nov 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -88,7 +98,7 @@ namespace Spirit_energy_project
                 }
                 else
                 {
-                    controller.SetCurrentSheet("LeftWalk");
+                    controller.SetCurrentSheet("RightWalk");
                 }
             }
 
@@ -107,7 +117,8 @@ namespace Spirit_energy_project
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
+            controller.Draw(spriteBatch);
+            // spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
             
             base.Draw(spriteBatch);
         }

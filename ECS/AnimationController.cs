@@ -109,6 +109,10 @@ namespace Spirit_energy_project
         public void Draw(SpriteBatch spriteBatch)
         {
             int animIndex = (int)Math.Clamp(animTime, 0, animCount);
+            if (animCount == 1 && animIndex > 0)
+            {
+                animIndex = 0;
+            }
 
             if (spriteSheetTexture != null)
             {
