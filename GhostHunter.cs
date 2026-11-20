@@ -54,15 +54,17 @@ namespace Spirit_energy_project
             Vector2 difference = Transform.Position - playerPos;
             
             direction = Vector2.Normalize(-difference);
-            if (Vector2.Distance(Transform.Position, playerPos) <= 50f)
+
+
+            if (Vector2.Distance(Transform.Center, playerPos) > 80f)
             {
-                speed = 0;
+                Move(gameTime);
             }
             else
             {
-                speed = 100f;
+                
             }
-            Move(gameTime);
+            
             base.Update(gameTime);
             
         }
@@ -71,6 +73,12 @@ namespace Spirit_energy_project
             spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
             
             base.Draw(spriteBatch);
+        }
+
+        public override void OnCollision(Collider other)
+        {
+
+            base.OnCollision(other);
         }
         public void Move(GameTime gameTime)
         {
