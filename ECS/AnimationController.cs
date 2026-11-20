@@ -11,6 +11,7 @@ namespace Spirit_energy_project
 {
     public class AnimationController : Component, IRendererComponent
     {
+        internal string spriteSheet;
         internal List<string> frames;
         internal List<Texture2D> textureFrames;
         internal IRendererComponent renderer;
@@ -36,7 +37,11 @@ namespace Spirit_energy_project
         internal override void componentAdded(GameObject owner)
         {
         }
-
+        public void SetSpriteSheet(string sprite, string path)
+        {
+            ContentEngineManager.Instance.LoadTexture2D(sprite, path);
+            spriteSheet = sprite;
+        }
         public void SetFrames(string[] _frames, string[] _paths)
         {
             frames.AddRange(_frames);
@@ -73,6 +78,11 @@ namespace Spirit_energy_project
         public void Draw(SpriteBatch spriteBatch)
         {
             int animIndex = (int)Math.Clamp(animTime, 0, animCount);
+
+            if (string.IsNullOrEmpty(spriteSheet))
+            {
+
+            }
 
             if (textureFrames.Count > 0)
             {
