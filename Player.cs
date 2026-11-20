@@ -36,6 +36,7 @@ namespace Spirit_energy_project
         public override void Initialize()
         {
             currentFrame = down;
+            Transform.Position = new Vector2(100, 100);
         }
         public override void LoadContents()
         {
