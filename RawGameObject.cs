@@ -58,7 +58,7 @@ namespace Spirit_energy_project
         {
             for (int iteration = 0; iteration < 4; iteration++)
             {
-                GameWorld.Instance.collisionSystem.Step(lastFrameColliders);
+                GameWorld.Instance.CollisionSystem.Step(lastFrameColliders);
             }
         }
         internal void intDraw(SpriteBatch spriteBatch)

@@ -22,16 +22,16 @@ namespace Spirit_energy_project
         static internal GameWorld Instance;
         public GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
-        private InputSystem inputSystem;
+        private InputSystem InputSystem { get; set; }
         public List<GameObject> GameObjects;
-        public Player Player;
-        internal CollisionSystem collisionSystem;
+        public Player Player { get; set; }
+        internal CollisionSystem CollisionSystem { get; set; }
 
         public int rounds = 0;
 
         public GameWorld()
         {
-            collisionSystem = new CollisionSystem();
+            CollisionSystem = new CollisionSystem();
             if (Instance != null)
             {
                 return;
@@ -45,7 +45,7 @@ namespace Spirit_energy_project
 
             new ContentEngineManager(Content);
 
-            inputSystem = new InputSystem();
+            InputSystem = new InputSystem();
 
             GameObjects = new List<GameObject>();
 
@@ -80,7 +80,7 @@ namespace Spirit_energy_project
 
             Time.Update(gameTime);
 
-            inputSystem.Update();
+            InputSystem.Update();
 
 
             GameObjects.ForEach(x => x.intUpdate(gameTime));
