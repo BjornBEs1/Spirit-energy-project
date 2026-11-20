@@ -8,13 +8,13 @@
  * -----
  */
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Spirit_energy_project
 {
@@ -24,6 +24,7 @@ namespace Spirit_energy_project
         internal Texture2D currentTexture;
         public Texture2D Sprite => currentTexture;
         public Vector2 SpriteSize => new Vector2(currentTexture.Width, currentTexture.Height);
+        public Vector2 Origin { get; set; }
 
         public void SetSprite(string key)
         {
@@ -59,7 +60,7 @@ namespace Spirit_energy_project
         {
             if (currentTexture != null)
             {
-                spriteBatch.Draw(currentTexture, Owner.Transform.Position, srcRectangle, Color.White, Owner.Transform.Rotation, SpriteSize / 2, Owner.Transform.Scale, SpriteEffects.None, 0f);
+                spriteBatch.Draw(currentTexture, Owner.Transform.Position, srcRectangle, Color.White, Owner.Transform.Rotation, Origin, Owner.Transform.Scale, SpriteEffects.None, 0f);
             }
         }
     }
