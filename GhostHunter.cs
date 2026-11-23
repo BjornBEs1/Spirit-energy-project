@@ -38,6 +38,8 @@ namespace Spirit_energy_project
         private float suckCooldown = 300f;
         private SpiritOrb spiritOrb;
 
+
+
         Texture2D circle;
 
         public GhostHunter()
@@ -56,7 +58,8 @@ namespace Spirit_energy_project
                     Vector2 diff = new Vector2(x, y) - center;
                     if (diff.LengthSquared() <= radius * radius)
                     {
-                        data[y * size + x] = Color.White;
+                        data[y * size + x] = new Color(0,255,0,128);
+                        
                     }
                     else
                     {
@@ -126,7 +129,7 @@ namespace Spirit_energy_project
                 dmgTakeTimer = 0f;
                 justHit = false;
             }
-
+            
             direction = Vector2.Normalize(-difference);
             if (difference.X < 0)
             {
@@ -162,7 +165,6 @@ namespace Spirit_energy_project
                 isAttacking = true;
 
             }
-
 
 
             base.Update(gameTime);
@@ -201,9 +203,9 @@ namespace Spirit_energy_project
         {
             if (!justHit)
             {
-                hp--;
+                hp -= dmg;
                 justHit = true;
-                Debug.WriteLine("Ghost hunter took Damage");
+                Debug.WriteLine($"Ghost hunter took {dmg} Damage ");
             }
 
             if (hp <= 0)
