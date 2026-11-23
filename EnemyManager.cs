@@ -45,6 +45,7 @@ namespace Spirit_energy_project
         {
             if (this.children.Count <= 0)
             {
+                GameWorld.Instance.rounds++;
                 SpawnRound();
             }
 

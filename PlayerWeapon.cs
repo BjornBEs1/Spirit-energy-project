@@ -100,7 +100,7 @@ namespace Spirit_energy_project
             base.Draw(spriteBatch);
         }
 
-        public override void OnCollisionEnter(Collider other)
+        public override void OnCollisionStay(Collider other)
         {
             if (other.Owner == null)
             {
@@ -110,12 +110,14 @@ namespace Spirit_energy_project
             {
                 return;
             }
+            
             if (other.Owner.Name.StartsWith("ghost"))
             {
                 IEnemy Ienemies = (IEnemy)other.Owner;
                 Ienemies.OnDamage(damage);
             }
-            base.OnCollisionEnter(other);
+
+            base.OnCollisionStay(other);
         }
 
     }
