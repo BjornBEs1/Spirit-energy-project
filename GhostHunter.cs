@@ -31,8 +31,10 @@ namespace Spirit_energy_project
         AnimationController controller;
         BoxCollider collider = new BoxCollider();
         private bool justHit = false;
-        public float timer = 0f;
-        private float takeDmgCooldown = 500f;
+        public float dmgTakeTimer = 0f;
+        public float suckTimer = 0f;
+        private float takeDmgCooldown = 300f;
+        private float suckCooldown = 300f;
         private SpiritOrb spiritOrb;
 
         public GhostHunter()
@@ -83,11 +85,18 @@ namespace Spirit_energy_project
             Vector2 playerPos = GameWorld.Instance.Player.Transform.Position;
             Vector2 difference = Transform.Position - playerPos;
 
-            timer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            dmgTakeTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
+            suckTimer += (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            if (timer >= takeDmgCooldown)
+            if (isAttacking && suckTimer >= suckCooldown)
             {
-                timer = 0f;
+                suckTimer = 0f;
+                GameWorld.Instance.SpiritEnergy.Energy--;
+            }
+
+            if (dmgTakeTimer >= takeDmgCooldown)
+            {
+                dmgTakeTimer = 0f;
                 justHit = false;
             }
             
@@ -127,6 +136,7 @@ namespace Spirit_energy_project
 
             }
 
+            
 
             base.Update(gameTime);
 
@@ -164,6 +174,7 @@ namespace Spirit_energy_project
                 justHit = true;
                 Debug.WriteLine("Ghost hunter took Damage");
             }
+
             if (hp <= 0)
             {
                 Destroy();
