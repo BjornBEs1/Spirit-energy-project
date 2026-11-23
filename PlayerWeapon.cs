@@ -51,21 +51,33 @@ namespace Spirit_energy_project
         {
             Vector2 playerPos = GameWorld.Instance.Player.Transform.Position;
             Transform.Position = playerPos;
-            if (GameWorld.Instance.Player.Facing.X > 0)
+            if (GameWorld.Instance.Player.Facing.X > 0) //Right
             {
                 Transform.Rotation = 0;
+                collider.Bounds = new Vector2(16, 16);
+                collider.OffsetX = 8;
+                collider.OffsetY = -40;
             }
-            if (GameWorld.Instance.Player.Facing.X < 0)
+            else if (GameWorld.Instance.Player.Facing.X < 0) //Left
             {
                 Transform.Rotation = 180;
+                collider.Bounds = new Vector2(16, 16);
+                collider.OffsetX = -56;
+                collider.OffsetY = -40;
             }
-            if (GameWorld.Instance.Player.Facing.Y > 0)
+            else if (GameWorld.Instance.Player.Facing.Y > 0) //Down
             {
                 Transform.Rotation = 90;
+                collider.Bounds = new Vector2(48, -16);
+                collider.OffsetX = -40;
+                collider.OffsetY = 8;
             }
-            if (GameWorld.Instance.Player.Facing.Y < 0)
+            else if (GameWorld.Instance.Player.Facing.Y < 0) //Up
             {
                 Transform.Rotation = 270;
+                collider.Bounds = new Vector2(48, -16);
+                collider.OffsetX = -40;
+                collider.OffsetY = -56;
             }
             base.Update(gameTime);
         }

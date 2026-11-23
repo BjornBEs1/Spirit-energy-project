@@ -18,12 +18,12 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Spirit_energy_project
 {
-    internal class SpiritOrbs : GameObject
+    internal class SpiritOrb : GameObject
     {
         int points;
         AnimationController controller;
         BoxCollider collider;
-        public SpiritOrbs(int _points)
+        public SpiritOrb(int _points)
         {
             points = _points;
             collider = new BoxCollider
@@ -36,6 +36,7 @@ namespace Spirit_energy_project
             AddComponent(spriteRenderer);
             controller = new AnimationController(spriteRenderer);
             AddComponent(controller);
+            controller.AnimationSpeed = 10;
         }
         public override void Initialize()
         {

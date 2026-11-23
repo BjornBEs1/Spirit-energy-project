@@ -31,7 +31,7 @@ namespace Spirit_energy_project
         AnimationController controller;
         BoxCollider collider = new BoxCollider();
 
-        private SpiritOrbs spiritOrb;
+        private SpiritOrb spiritOrb;
 
         public GhostHunter()
         {
@@ -149,7 +149,7 @@ namespace Spirit_energy_project
 
         public override void OnDestroy()
         {
-            spiritOrb = new SpiritOrbs(10);
+            spiritOrb = new SpiritOrb(10);
             spiritOrb.Transform = Transform;
             addChlid(spiritOrb, Parent);
             base.OnDestroy();
