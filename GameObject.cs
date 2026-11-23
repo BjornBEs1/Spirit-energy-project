@@ -125,8 +125,8 @@ namespace Spirit_energy_project
         {
             Parent.removeChild(this);
             OnDestroy();
-            Transform = null;
-            components = null;
+            // Transform = null;
+            // components = null;
         }
 
         public virtual void Initialize() { }

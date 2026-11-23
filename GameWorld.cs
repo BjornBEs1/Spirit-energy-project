@@ -87,12 +87,20 @@ namespace Spirit_energy_project
 
             InputSystem.Update();
 
-
-            GameObjects.ForEach(x => x.intUpdate(gameTime));
-
+            List<Collider> colliders = new List<Collider>();
+            GameObjects.ForEach(x => colliders.AddRange(x.intUpdate(gameTime)));
+            PhysicsStep(colliders);
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+        }
+
+        private void PhysicsStep(List<Collider> lastFrameColliders)
+        {
+            for (int iteration = 0; iteration < 4; iteration++)
+            {
+                GameWorld.Instance.CollisionSystem.Step(lastFrameColliders);
+            }
         }
 
         protected override void Draw(GameTime gameTime)

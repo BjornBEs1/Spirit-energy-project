@@ -43,7 +43,7 @@ namespace Spirit_energy_project
         }
         public override void LoadContents()
         {
-            controller.SetSpriteSheet("SpiritOrbSprite", "SpiritOrb", "SpiritOrb", new Rectangle(0, 0, 128, 32), 32, 32);
+            controller.SetSpriteSheet("SpiritOrb", "SpiritOrbSheet", "SpiritOrb", new Rectangle(0, 0, 128, 32), 32, 32);
         }
         public override void Update(GameTime gameTime)
         {
