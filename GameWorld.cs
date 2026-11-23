@@ -68,6 +68,8 @@ namespace Spirit_energy_project
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            ContentEngineManager.Instance.LoadTexture2D("pixel", "pixel");
+
             GameObjects.ForEach(x => x.intLoadContents());
         }
 

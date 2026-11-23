@@ -20,10 +20,21 @@ namespace Spirit_energy_project
 {
     public class SpriteRenderer : Component, IRendererComponent
     {
-        internal Rectangle srcRectangle;
+        internal Rectangle? srcRectangle;
         internal Texture2D currentTexture;
         public Texture2D Sprite => currentTexture;
-        public Vector2 SpriteSize => new Vector2(currentTexture.Width, currentTexture.Height);
+        public Vector2 SpriteSize
+        {
+            get
+            {
+                if (srcRectangle.HasValue)
+                {
+                    return srcRectangle.Value.Size.ToVector2();
+                }
+                return new Vector2(currentTexture.Width, currentTexture.Height);
+            }
+        }
+
         public Vector2 Origin { get; set; }
 
         public void SetSprite(string key)
