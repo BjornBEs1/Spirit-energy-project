@@ -41,7 +41,7 @@ namespace Spirit_energy_project
             addComponent(renderer);
             addComponent(controller);
             addComponent(collider);
-            controller.AnimationSpeed = 7.5f;
+            controller.AnimationSpeed = 16f;
             renderer.Origin = new Vector2(-16, 32);
         }
         public override void Initialize()
@@ -100,7 +100,7 @@ namespace Spirit_energy_project
             base.Draw(spriteBatch);
         }
 
-        public override void OnTriggerEnter(Collider other)
+        public override void OnCollisionEnter(Collider other)
         {
             if (other.Owner == null)
             {
