@@ -61,7 +61,7 @@ namespace Spirit_energy_project
         {
             if (other.Owner is Player player)
             {
-                player.Points += points;
+                GameWorld.Instance.SpiritEnergy.Energy += 5;
                 Destroy();
             }
         }
