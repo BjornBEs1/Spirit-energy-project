@@ -60,7 +60,7 @@ namespace Spirit_energy_project
                 newGhostHunter.LoadContents();
                 newGhostHunter.Name = $"ghost{i}";
                 addChlid(newGhostHunter, this);
-                children.Add(newGhostHunter);
+                // children.Add(newGhostHunter);
             }
         }
     }

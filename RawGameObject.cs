@@ -42,24 +42,21 @@ namespace Spirit_energy_project
             ObjLoadContents();
             // children.ForEach((x) => x.intLoadContents());
         }
-        internal void intUpdate(GameTime gameTime)
+        internal List<Collider> intUpdate(GameTime gameTime, bool is_root = true)
         {
             ObjUpdate(gameTime);
             List<GameObject> objects = children.ToList();
             List<Collider> colliders = new List<Collider>();
             objects.ForEach((x) =>
             {
-                colliders.AddRange(x._colliderComponents);
-                x.intUpdate(gameTime);
+                if (x._colliderComponents.Count > 0)
+                {
+                    colliders.AddRange(x._colliderComponents);
+                }
+                colliders.AddRange(x.intUpdate(gameTime, false));
             });
-            PhysicsStep(colliders);
-        }
-        private void PhysicsStep(List<Collider> lastFrameColliders)
-        {
-            for (int iteration = 0; iteration < 4; iteration++)
-            {
-                GameWorld.Instance.CollisionSystem.Step(lastFrameColliders);
-            }
+            children = objects;
+            return colliders;
         }
         internal void intDraw(SpriteBatch spriteBatch)
         {

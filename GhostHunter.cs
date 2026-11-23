@@ -98,7 +98,7 @@ namespace Spirit_energy_project
                 if (isAttacking)
                 {
                     controller.SetCurrentSheet("AttackLeft");
-                    
+
                 }
                 else
                 {
@@ -114,7 +114,7 @@ namespace Spirit_energy_project
             else
             {
                 isAttacking = true;
-                
+
             }
 
             base.Update(gameTime);
@@ -125,19 +125,7 @@ namespace Spirit_energy_project
             controller.Draw(spriteBatch);
             collider.DebugDraw(spriteBatch);
             // spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
-
             base.Draw(spriteBatch);
-        }
-
-        public override void OnTriggerEnter(Collider other)
-        {
-            hp--;
-            if (hp <= 0)
-            {
-                
-                Destroy();
-            }
-            base.OnTriggerEnter(other);
         }
 
 
@@ -152,12 +140,18 @@ namespace Spirit_energy_project
             spiritOrb = new SpiritOrb(10);
             spiritOrb.Transform = Transform;
             addChlid(spiritOrb, Parent);
+            spiritOrb.Initialize();
+            spiritOrb.LoadContents();
             base.OnDestroy();
         }
 
         public void OnDamage(int dmg)
         {
             hp--;
+            if (hp <= 0)
+            {
+                Destroy();
+            }
         }
     }
 }

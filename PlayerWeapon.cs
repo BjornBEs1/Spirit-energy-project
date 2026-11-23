@@ -1,4 +1,14 @@
-﻿using System;
+﻿/*
+ * File: PlayerWeapon.cs
+ * File Created: 23 Nov 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 23 Nov 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -92,6 +102,14 @@ namespace Spirit_energy_project
 
         public override void OnTriggerEnter(Collider other)
         {
+            if (other.Owner == null)
+            {
+                return;
+            }
+            if (other.Owner.Name == null)
+            {
+                return;
+            }
             if (other.Owner.Name.StartsWith("ghost"))
             {
                 IEnemy Ienemies = (IEnemy)other.Owner;

@@ -61,7 +61,7 @@ namespace Spirit_energy_project
             ghostPunch.LoadContents();
             ghostPunch.Name = $"ghostPunch";
             addChlid(ghostPunch, this);
-            children.Add(ghostPunch);
+            // children.Add(ghostPunch);
             Transform.Position = new Vector2(100, 100);
         }
         public override void LoadContents()
