@@ -37,6 +37,7 @@ namespace Spirit_energy_project
         public override void LoadContents()
         {
             ContentEngineManager.Instance.LoadTexture2D("GhostHunterSprite", "Enemy");
+            ContentEngineManager.Instance.LoadTexture2D("SpiritOrbSprite", "SpiritOrb");
             
             base.LoadContents();
         }
