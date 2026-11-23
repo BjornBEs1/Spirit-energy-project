@@ -42,7 +42,7 @@ namespace Spirit_energy_project
             addComponent(renderer);
             addComponent(controller);
             controller.AnimationSpeed = 10;
-            // renderer.Origin = new Vector2(16, 8);
+            renderer.Origin = new Vector2(16, 8);
         }
         public override void Update(GameTime gameTime)
         {
