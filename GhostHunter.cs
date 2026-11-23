@@ -38,6 +38,7 @@ namespace Spirit_energy_project
             AddComponent(spriteRenderer);
             controller = new AnimationController(spriteRenderer);
             AddComponent(controller);
+            controller.AnimationSpeed = 2;
             maxHp = 10;
             hp = maxHp;
             speed = 50f;

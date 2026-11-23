@@ -30,5 +30,10 @@ namespace Spirit_energy_project
             controller.SetCurrentSheet("punch01");
             base.Initialize();
         }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            controller.Draw(spriteBatch);
+            base.Draw(spriteBatch);
+        }
     }
 }

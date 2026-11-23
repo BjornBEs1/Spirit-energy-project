@@ -36,6 +36,7 @@ namespace Spirit_energy_project
         }
         public override void Update(GameTime gameTime)
         {
+            
             HandleInput();
             Transform.Position += velocity * speed * Time.DeltaTime;
             if (velocity.X == 0)
@@ -50,6 +51,7 @@ namespace Spirit_energy_project
         }
         public override void Initialize()
         {
+            
             Transform.Position = new Vector2(100, 100);
         }
         public override void LoadContents()
