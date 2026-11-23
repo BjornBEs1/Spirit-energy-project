@@ -109,6 +109,7 @@ namespace Spirit_energy_project
             else
             {
                 isAttacking = true;
+                OnAttack();
             }
 
             base.Update(gameTime);
@@ -122,7 +123,16 @@ namespace Spirit_energy_project
             base.Draw(spriteBatch);
         }
 
+        public override void OnCollisionStay(Collider other)
+        {
 
+            base.OnCollisionStay(other);
+        }
+
+        public void OnAttack()
+        {
+
+        }
 
 
         public void Move(GameTime gameTime)
