@@ -51,7 +51,13 @@ namespace Spirit_energy_project
         }
         public override void Initialize()
         {
-            
+            Debug.WriteLine("Added Weapon");
+            PlayerWeapon ghostPunch = new PlayerWeapon();
+            ghostPunch.Initialize();
+            ghostPunch.LoadContents();
+            ghostPunch.Name = $"ghostPunch";
+            addChlid(ghostPunch, this);
+            children.Add(ghostPunch);
             Transform.Position = new Vector2(100, 100);
         }
         public override void LoadContents()
@@ -60,8 +66,8 @@ namespace Spirit_energy_project
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_left", new Rectangle(0, 32, 128, 32), 32, 32);
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_down", new Rectangle(0, 64, 128, 32), 32, 32);
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_up", new Rectangle(0, 96, 128, 32), 32, 32);
-            controller.SetSpriteSheet("GhostPunch01", "GhostFistSprite", "punch01", new Rectangle(0, 0, 128, 64), 32, 64);
-            controller.SetSpriteSheet("GhostPunch02", "GhostFistSprite", "punch02", new Rectangle(0, 64, 128, 64), 32, 64);
+            
+
         }
         protected void HandleInput()
         {
