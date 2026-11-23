@@ -46,6 +46,7 @@ namespace Spirit_energy_project
 
         public BoxCollider()
         {
+            Bounds = Vector2.Zero;
         }
 
         internal override Rectangle GetWorldBounds()

@@ -25,6 +25,7 @@ namespace Spirit_energy_project
         private InputSystem InputSystem { get; set; }
         public List<GameObject> GameObjects;
         public Player Player { get; set; }
+        public SpiritEnergyMeter SpiritEnergy { get; set; }
         internal CollisionSystem CollisionSystem { get; set; }
 
         public int rounds = 0;
@@ -41,6 +42,7 @@ namespace Spirit_energy_project
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
 
+            SpiritEnergy = new SpiritEnergyMeter();
             Player = new Player();
 
             new ContentEngineManager(Content);
@@ -50,6 +52,7 @@ namespace Spirit_energy_project
             GameObjects = new List<GameObject>();
 
             GameObjects.Add(Player);
+            GameObjects.Add(SpiritEnergy);
             GameObjects.Add(new EnemyManager());
             // add player
             // add enemyManager
