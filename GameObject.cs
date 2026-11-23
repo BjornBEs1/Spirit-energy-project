@@ -123,10 +123,10 @@ namespace Spirit_energy_project
         }
         public void Destroy()
         {
-            Transform = null;
-            components = null;
             Parent.removeChild(this);
             OnDestroy();
+            Transform = null;
+            components = null;
         }
 
         public virtual void Initialize() { }
