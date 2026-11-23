@@ -58,7 +58,7 @@ namespace Spirit_energy_project
                     Vector2 diff = new Vector2(x, y) - center;
                     if (diff.LengthSquared() <= radius * radius)
                     {
-                        data[y * size + x] = new Color(0,255,0,128);
+                        data[y * size + x] = new Color(255,255,0,128);
                         
                     }
                     else
@@ -174,7 +174,7 @@ namespace Spirit_energy_project
         {
             if (isAttacking)
             {
-                spriteBatch.Draw(circle, Transform.Position + spriteRenderer.SpriteSize / 2, null, Color.Green, 0, new Vector2(160 / 2), 1, SpriteEffects.None, 0);
+                spriteBatch.Draw(circle, Transform.Position + spriteRenderer.SpriteSize / 2, null, Color.LightGoldenrodYellow*0.5f, 0, new Vector2(160 / 2), 1, SpriteEffects.None, 0);
             }
             controller.Draw(spriteBatch);
             collider.DebugDraw(spriteBatch);
