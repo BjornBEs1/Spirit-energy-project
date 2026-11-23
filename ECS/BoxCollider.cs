@@ -29,8 +29,8 @@ namespace Spirit_energy_project
                     }
                 }
                 return new Rectangle(
-                    (int)(Owner.Transform.Position.X - spriteSize.X / 2),
-                    (int)(Owner.Transform.Position.Y - spriteSize.Y / 2),
+                    (int)(Owner.Transform.Position.X),
+                    (int)(Owner.Transform.Position.Y),
                     (int)(spriteSize.X),
                     (int)(spriteSize.Y)
                 );

@@ -56,8 +56,8 @@ namespace Spirit_energy_project.ECS.ColliderSystem
         internal void ResolveCollision(Collider a, Collider b)
         {
             // Only resolve if exactly one is dynamic
-            if (a.Owner.IsStatic == b.Owner.IsStatic)
-                return;
+            // if (a.Owner.IsStatic == b.Owner.IsStatic)
+                // return;
 
             if (a.IsTrigger || b.IsTrigger)
             {
