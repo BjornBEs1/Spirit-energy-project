@@ -16,16 +16,16 @@ using Spirit_energy_project;
 
 public class SpiritEnergyMeter : GameObject
 {
-    int energy;
-    int maxEnergy;
+    internal int Energy;
+    internal int MaxEnergy;
 
     SpriteRenderer BackgroundSprite;
     SpriteRenderer ForegroundSprite;
     SpriteRenderer MeterSprite;
     public SpiritEnergyMeter()
     {
-        energy = 100;
-        maxEnergy = 100;
+        Energy = 100;
+        MaxEnergy = 100;
         BackgroundSprite = new SpriteRenderer();
         AddComponent(BackgroundSprite);
         ForegroundSprite = new SpriteRenderer();
@@ -55,7 +55,7 @@ public class SpiritEnergyMeter : GameObject
                 int posX = 20;
                 int posY = 50;
                 int borderThickness = 2; */
-        float healthPercentage = MathHelper.Clamp((float)energy / maxEnergy, 0f, 1f);
+        float healthPercentage = MathHelper.Clamp((float)Energy / MaxEnergy, 0f, 1f);
         int currentBarWidth = (int)(128 * healthPercentage);
 
         Rectangle meterSpriteRect;

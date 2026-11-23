@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,18 +49,18 @@ namespace Spirit_energy_project
         }
         public override void Update(GameTime gameTime)
         {
-            
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
+            collider.DebugDraw(spriteBatch);
             controller.Draw(spriteBatch);
         }
 
         public override void OnTriggerEnter(Collider other)
         {
-            if (other.Owner.Name == "Player")
+            if (other.Owner is Player player)
             {
-                Player player = (Player)other.Owner;
                 player.Points += points;
                 Destroy();
             }

@@ -88,7 +88,14 @@ namespace Spirit_energy_project
             InputSystem.Update();
 
             List<Collider> colliders = new List<Collider>();
-            GameObjects.ForEach(x => colliders.AddRange(x.intUpdate(gameTime)));
+            GameObjects.ForEach(x =>
+            {
+                if (x._colliderComponents.Count > 0)
+                {
+                    colliders.AddRange(x._colliderComponents);
+                }
+                colliders.AddRange(x.intUpdate(gameTime));
+            });
             PhysicsStep(colliders);
             // TODO: Add your update logic here
 
