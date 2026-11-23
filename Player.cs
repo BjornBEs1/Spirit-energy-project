@@ -21,12 +21,14 @@ using Spirit_energy_project.InputSubsystem;
 namespace Spirit_energy_project
 {
     public class Player : GameObject
-    {        
+    {
+        internal int Points { get; set; }
         private float speed = 200;
         AnimationController controller;
         SpriteRenderer renderer;
         public Player()
         {
+            Name = "Player";
             renderer = new SpriteRenderer();
             controller = new AnimationController(renderer);
             addComponent(renderer);
@@ -36,7 +38,7 @@ namespace Spirit_energy_project
         }
         public override void Update(GameTime gameTime)
         {
-            
+
             HandleInput();
             Transform.Position += velocity * speed * Time.DeltaTime;
             if (velocity.X == 0)
@@ -66,7 +68,7 @@ namespace Spirit_energy_project
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_left", new Rectangle(0, 32, 128, 32), 32, 32);
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_down", new Rectangle(0, 64, 128, 32), 32, 32);
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_up", new Rectangle(0, 96, 128, 32), 32, 32);
-            
+
 
         }
         protected void HandleInput()
@@ -79,7 +81,7 @@ namespace Spirit_energy_project
                 velocity += new Vector2(0, -1);
             }
             if (Input.IsKeyDown(KeyCode.Down))
-            {                
+            {
                 controller.SetCurrentSheet("ghost_down");
                 velocity += new Vector2(0, 1);
             }

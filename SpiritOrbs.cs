@@ -1,26 +1,67 @@
-﻿using Microsoft.Xna.Framework;
+﻿/*
+ * File: SpiritOrbs.cs
+ * File Created: 20 Nov 2026
+ * Author: BjornBEs
+ * -----
+ * Last Modified: 23 Nov 2026
+ * Modified By: BjornBEs
+ * -----
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Spirit_energy_project
 {
     internal class SpiritOrbs : GameObject
     {
-        public override void Update(GameTime gameTime)
+        int points;
+        AnimationController controller;
+        BoxCollider collider;
+        public SpiritOrbs(int _points)
         {
-            base.Update(gameTime);
+            points = _points;
+            collider = new BoxCollider
+            {
+                IsTrigger = true,
+                Bounds = new Vector2(10, 10)
+            };
+            AddComponent(collider);
+            SpriteRenderer spriteRenderer = new SpriteRenderer();
+            AddComponent(spriteRenderer);
+            controller = new AnimationController(spriteRenderer);
+            AddComponent(controller);
         }
         public override void Initialize()
         {
             base.Initialize();
         }
         public override void LoadContents()
-        { 
-            base.LoadContents();
+        {
+            controller.SetSpriteSheet("SpiritOrbSprite", "SpiritOrb", "SpiritOrb", new Rectangle(0, 0, 128, 32), 32, 32);
+        }
+        public override void Update(GameTime gameTime)
+        {
+            
+        }
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            controller.Draw(spriteBatch);
         }
 
+        public override void OnTriggerEnter(Collider other)
+        {
+            if (other.Owner.Name == "Player")
+            {
+                Player player = (Player)other.Owner;
+                player.Points += points;
+                Destroy();
+            }
+        }
     }
 }

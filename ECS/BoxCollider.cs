@@ -16,7 +16,7 @@ namespace Spirit_energy_project
 {
     public class BoxCollider : Collider
     {
-        public Rectangle box
+        private Rectangle box
         {
             get
             {
@@ -29,10 +29,10 @@ namespace Spirit_energy_project
                     }
                 }
                 return new Rectangle(
-                    (int)(Owner.Transform.Position.X),
-                    (int)(Owner.Transform.Position.Y),
-                    (int)(spriteSize.X),
-                    (int)(spriteSize.Y)
+                    (int)(Owner.Transform.Position.X + OffsetX),
+                    (int)(Owner.Transform.Position.Y + OffsetY),
+                    (int)(spriteSize.X + Bounds.X),
+                    (int)(spriteSize.Y + Bounds.Y)
                 );
             }
         }
