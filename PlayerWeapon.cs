@@ -20,13 +20,17 @@ namespace Spirit_energy_project
         private Texture2D sprite;
         AnimationController controller;
         SpriteRenderer renderer;
+        BoxCollider collider = new BoxCollider();
+
         public PlayerWeapon()
         {
             damage = damageRange.Next(4, 7);
             renderer = new SpriteRenderer();
             controller = new AnimationController(renderer);
+            collider.IsTrigger = true;
             addComponent(renderer);
             addComponent(controller);
+            addComponent(collider);
             controller.AnimationSpeed = 7.5f;
             renderer.Origin = new Vector2(-16, 16);
         }
@@ -49,10 +53,20 @@ namespace Spirit_energy_project
             Transform.Position = playerPos;
             base.Update(gameTime);
         }
+        
+
         public override void Draw(SpriteBatch spriteBatch)
         {
             controller.Draw(spriteBatch);
+            collider.DebugDraw(spriteBatch);
             base.Draw(spriteBatch);
         }
+
+        public override void OnTriggerEnter(Collider other)
+        {
+            other.Owner.
+            base.OnTriggerEnter(other);
+        }
+
     }
 }

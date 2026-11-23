@@ -10,7 +10,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -27,10 +29,10 @@ namespace Spirit_energy_project
         private Random random = new Random();
         private bool isAttacking = false;
         AnimationController controller;
-
+        BoxCollider collider = new BoxCollider();
         public GhostHunter()
         {
-            BoxCollider collider = new BoxCollider();
+
             AddComponent(collider);
             SpriteRenderer spriteRenderer = new SpriteRenderer();
             AddComponent(spriteRenderer);
@@ -118,16 +120,18 @@ namespace Spirit_energy_project
         public override void Draw(SpriteBatch spriteBatch)
         {
             controller.Draw(spriteBatch);
+            collider.DebugDraw(spriteBatch);
             // spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
 
             base.Draw(spriteBatch);
         }
 
-        public override void OnCollisionStay(Collider other)
+        public override void OnTriggerEnter(Collider other)
         {
-
-            base.OnCollisionStay(other);
+            
+            base.OnTriggerEnter(other);
         }
+        
 
         public void OnAttack()
         {

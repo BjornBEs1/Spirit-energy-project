@@ -21,7 +21,6 @@ namespace Spirit_energy_project
 {
     internal class EnemyManager : GameObject
     {
-        private Texture2D ghostHunterSprite;
         
         public EnemyManager() 
         {
