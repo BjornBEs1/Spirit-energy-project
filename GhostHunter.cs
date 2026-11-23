@@ -28,6 +28,7 @@ namespace Spirit_energy_project
         private Vector2 direction;
         private Random random = new Random();
         private bool isAttacking = false;
+        SpriteRenderer spriteRenderer;
         AnimationController controller;
         BoxCollider collider = new BoxCollider();
         private bool justHit = false;
@@ -37,11 +38,37 @@ namespace Spirit_energy_project
         private float suckCooldown = 300f;
         private SpiritOrb spiritOrb;
 
+        Texture2D circle;
+
         public GhostHunter()
         {
+            int size = 160;
+            circle = new Texture2D(GameWorld.Instance.GraphicsDevice, size, size);
+
+            Color[] data = new Color[size * size];
+            Vector2 center = new Vector2(size / 2f, size / 2f);
+            float radius = size / 2f;
+
+            for (int y = 0; y < size; y++)
+            {
+                for (int x = 0; x < size; x++)
+                {
+                    Vector2 diff = new Vector2(x, y) - center;
+                    if (diff.LengthSquared() <= radius * radius)
+                    {
+                        data[y * size + x] = Color.White;
+                    }
+                    else
+                    {
+                        data[y * size + x] = Color.Transparent;
+                    }
+                }
+            }
+
+            circle.SetData(data);
 
             AddComponent(collider);
-            SpriteRenderer spriteRenderer = new SpriteRenderer();
+            spriteRenderer = new SpriteRenderer();
             AddComponent(spriteRenderer);
             controller = new AnimationController(spriteRenderer);
             AddComponent(controller);
@@ -99,7 +126,7 @@ namespace Spirit_energy_project
                 dmgTakeTimer = 0f;
                 justHit = false;
             }
-            
+
             direction = Vector2.Normalize(-difference);
             if (difference.X < 0)
             {
@@ -136,13 +163,17 @@ namespace Spirit_energy_project
 
             }
 
-            
+
 
             base.Update(gameTime);
 
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (isAttacking)
+            {
+                spriteBatch.Draw(circle, Transform.Position + spriteRenderer.SpriteSize / 2, null, Color.Green, 0, new Vector2(160 / 2), 1, SpriteEffects.None, 0);
+            }
             controller.Draw(spriteBatch);
             collider.DebugDraw(spriteBatch);
             // spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
