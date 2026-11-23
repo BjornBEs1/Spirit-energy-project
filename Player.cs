@@ -28,15 +28,21 @@ namespace Spirit_energy_project
         public Vector2 Facing { get; set; }
         AnimationController controller;
         SpriteRenderer renderer;
+        BoxCollider collider;
         public Player()
         {
             Name = "Player";
+            collider = new BoxCollider
+            {
+                IsTrigger = false,
+            };
+            AddComponent(collider);
             renderer = new SpriteRenderer();
             controller = new AnimationController(renderer);
             addComponent(renderer);
             addComponent(controller);
             controller.AnimationSpeed = 10;
-            renderer.Origin = new Vector2(16, 8);
+            // renderer.Origin = new Vector2(16, 8);
         }
         public override void Update(GameTime gameTime)
         {
@@ -51,6 +57,8 @@ namespace Spirit_energy_project
         public override void Draw(SpriteBatch spriteBatch)
         {
             controller.Draw(spriteBatch);
+
+            collider.DebugDraw(spriteBatch);
             //spriteBatch.Draw(ghostSprite, Transform.Position, null, Color.White, MathHelper.ToRadians(rotation), new Vector2(16, 8), 1f, SpriteEffects.None, 0f);
         }
         public override void Initialize()
