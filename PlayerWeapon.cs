@@ -115,7 +115,7 @@ namespace Spirit_energy_project
                 IEnemy Ienemies = (IEnemy)other.Owner;
                 Ienemies.OnDamage(damage);
             }
-            base.OnTriggerEnter(other);
+            base.OnCollisionEnter(other);
         }
 
     }
