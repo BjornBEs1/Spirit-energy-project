@@ -14,9 +14,9 @@ namespace Spirit_energy_project
     {
         private int damage;
         public int Damage { get=>damage; }
+        private Random damageRange = new Random();
         private int energyCost;
         public int EnergyCost { get => energyCost; }
-        private Random damageRange = new Random();
         private Texture2D sprite;
         AnimationController controller;
         SpriteRenderer renderer;
@@ -32,7 +32,7 @@ namespace Spirit_energy_project
             addComponent(controller);
             addComponent(collider);
             controller.AnimationSpeed = 7.5f;
-            renderer.Origin = new Vector2(-16, 16);
+            renderer.Origin = new Vector2(-16, 32);
         }
         public override void Initialize()
         {
@@ -51,6 +51,22 @@ namespace Spirit_energy_project
         {
             Vector2 playerPos = GameWorld.Instance.Player.Transform.Position;
             Transform.Position = playerPos;
+            if (GameWorld.Instance.Player.Facing.X > 0)
+            {
+                Transform.Rotation = 0;
+            }
+            if (GameWorld.Instance.Player.Facing.X < 0)
+            {
+                Transform.Rotation = 180;
+            }
+            if (GameWorld.Instance.Player.Facing.Y > 0)
+            {
+                Transform.Rotation = 90;
+            }
+            if (GameWorld.Instance.Player.Facing.Y < 0)
+            {
+                Transform.Rotation = 270;
+            }
             base.Update(gameTime);
         }
         
@@ -64,7 +80,7 @@ namespace Spirit_energy_project
 
         public override void OnTriggerEnter(Collider other)
         {
-            other.Owner.
+            //other.Owner.
             base.OnTriggerEnter(other);
         }
 

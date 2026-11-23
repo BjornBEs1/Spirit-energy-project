@@ -24,6 +24,8 @@ namespace Spirit_energy_project
     {
         internal int Points { get; set; }
         private float speed = 200;
+        protected bool isAttacking = false;
+        public Vector2 Facing { get; set; }
         AnimationController controller;
         SpriteRenderer renderer;
         public Player()
@@ -79,25 +81,33 @@ namespace Spirit_energy_project
             {
                 controller.SetCurrentSheet("ghost_up");
                 velocity += new Vector2(0, -1);
+                Facing = velocity;
             }
             if (Input.IsKeyDown(KeyCode.Down))
             {
                 controller.SetCurrentSheet("ghost_down");
                 velocity += new Vector2(0, 1);
+                Facing = velocity;
             }
             if (Input.IsKeyDown(KeyCode.Left))
             {
                 controller.SetCurrentSheet("ghost_left");
                 velocity += new Vector2(-1, 0);
                 if (Transform.Rotation > -20f)
+                {
                     Transform.Rotation -= 2f;
+                }
+                Facing = velocity;
             }
             if (Input.IsKeyDown(KeyCode.Right))
             {
                 controller.SetCurrentSheet("ghost_right");
                 velocity += new Vector2(1, 0);
                 if (Transform.Rotation < 20)
+                {
                     Transform.Rotation += 2f;
+                }
+                Facing = velocity;
             }
 
             if (velocity != Vector2.Zero)
@@ -107,7 +117,7 @@ namespace Spirit_energy_project
 
             if (Input.IsKeyDown(KeyCode.Space))
             {
-                //Instantiate a PlayerWeapon
+                isAttacking = true;
             }
         }
         private void NormalizeRotation()
