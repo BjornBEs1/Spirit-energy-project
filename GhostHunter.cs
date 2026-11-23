@@ -30,6 +30,9 @@ namespace Spirit_energy_project
         private bool isAttacking = false;
         AnimationController controller;
         BoxCollider collider = new BoxCollider();
+
+        private SpiritOrbs spiritOrb;
+
         public GhostHunter()
         {
 
@@ -111,7 +114,7 @@ namespace Spirit_energy_project
             else
             {
                 isAttacking = true;
-                OnAttack();
+                
             }
 
             base.Update(gameTime);
@@ -128,20 +131,33 @@ namespace Spirit_energy_project
 
         public override void OnTriggerEnter(Collider other)
         {
-            
+            hp--;
+            if (hp <= 0)
+            {
+                
+                Destroy();
+            }
             base.OnTriggerEnter(other);
         }
-        
 
-        public void OnAttack()
-        {
-
-        }
 
 
         public void Move(GameTime gameTime)
         {
             Transform.Position += ((direction * speed) * Time.DeltaTime);
+        }
+
+        public override void OnDestroy()
+        {
+            spiritOrb = new SpiritOrbs(10);
+            spiritOrb.Transform = Transform;
+            addChlid(spiritOrb, Parent);
+            base.OnDestroy();
+        }
+
+        public void OnDamage(int dmg)
+        {
+            
         }
     }
 }

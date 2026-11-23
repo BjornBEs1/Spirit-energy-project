@@ -64,7 +64,11 @@ namespace Spirit_energy_project
 
         public override void OnTriggerEnter(Collider other)
         {
-            other.Owner.
+            if (other.Owner.Name.StartsWith("ghost"))
+            {
+                IEnemy Ienemies = (IEnemy)other.Owner;
+                Ienemies.OnDamage(damage);
+            }
             base.OnTriggerEnter(other);
         }
 

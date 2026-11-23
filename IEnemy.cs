@@ -9,5 +9,7 @@ namespace Spirit_energy_project
     {
         public int MaxHp { get; set; }
         public int Hp { get; set; }
+
+        public void OnDamage(int dmg);
     }
 }
