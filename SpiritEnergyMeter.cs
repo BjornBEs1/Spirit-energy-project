@@ -24,7 +24,7 @@ public class SpiritEnergyMeter : GameObject
     SpriteRenderer MeterSprite;
     public SpiritEnergyMeter()
     {
-        energy = 0;
+        energy = 100;
         maxEnergy = 100;
         BackgroundSprite = new SpriteRenderer();
         AddComponent(BackgroundSprite);
@@ -111,9 +111,6 @@ public class SpiritEnergyMeter : GameObject
         //     string winText = "WIN";
         //     Debug.WriteLine(winText);
         // }
-
-        //Health display
-        Debug.WriteLine($"Health: {energy}");
 
         base.Draw(spriteBatch);
     }
