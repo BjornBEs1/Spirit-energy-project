@@ -8,13 +8,13 @@
  * -----
  */
 
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Spirit_energy_project
 {
@@ -24,12 +24,10 @@ namespace Spirit_energy_project
         int maxHp;
         private float speed;
         private Vector2 direction;
-        private Texture2D sprite;
         private Random random = new Random();
         private bool isAttacking = false;
         AnimationController controller;
-        private Rectangle CurrentSprite = new Rectangle(0,0,32,32);
-        
+
         public GhostHunter()
         {
             BoxCollider collider = new BoxCollider();
@@ -64,42 +62,42 @@ namespace Spirit_energy_project
 
         public int MaxHp { get => maxHp; set => maxHp = value; }
         public int Hp { get => hp; set => hp = value; }
-       
+
         public override void LoadContents()
         {
-            sprite = ContentEngineManager.Instance.GetTexture2D("GhostHunterSprite");
-            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "RightWalk", new Rectangle(0, 0, 64, 32), 32, 32);
-            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "LeftWalk", new Rectangle(0, 32, 64, 32), 32, 32);
-            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "Attack", new Rectangle(0, 32, 32, 32), 32, 32);
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "LeftWalk", new Rectangle(0, 0, 64, 32), 32, 32);
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "RightWalk", new Rectangle(0, 32, 64, 32), 32, 32);
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "AttackRight", new Rectangle(0, 32, 32, 32), 32, 32);
+            controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "AttackLeft", new Rectangle(0, 0, 32, 32), 32, 32);
             base.LoadContents();
         }
         public override void Update(GameTime gameTime)
         {
             Vector2 playerPos = GameWorld.Instance.Player.Transform.Position;
             Vector2 difference = Transform.Position - playerPos;
-            
+
             direction = Vector2.Normalize(-difference);
             if (difference.X < 0)
             {
                 if (isAttacking)
                 {
-                    controller.SetCurrentSheet("Attack");
+                    controller.SetCurrentSheet("AttackRight");
                 }
                 else
                 {
-                    controller.SetCurrentSheet("LeftWalk");
+                    controller.SetCurrentSheet("RightWalk");
                 }
             }
             else
             {
                 if (isAttacking)
                 {
-                    controller.SetCurrentSheet("Attack");
+                    controller.SetCurrentSheet("AttackLeft");
                     
                 }
                 else
                 {
-                    controller.SetCurrentSheet("RightWalk");
+                    controller.SetCurrentSheet("LeftWalk");
                 }
             }
 
@@ -112,21 +110,21 @@ namespace Spirit_energy_project
             {
                 isAttacking = true;
             }
-            
+
             base.Update(gameTime);
-            
+
         }
         public override void Draw(SpriteBatch spriteBatch)
         {
             controller.Draw(spriteBatch);
             // spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
-            
+
             base.Draw(spriteBatch);
         }
 
-        
 
-        
+
+
         public void Move(GameTime gameTime)
         {
             Transform.Position += ((direction * speed) * Time.DeltaTime);
