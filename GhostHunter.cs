@@ -157,7 +157,7 @@ namespace Spirit_energy_project
 
         public void OnDamage(int dmg)
         {
-            
+            hp--;
         }
     }
 }
