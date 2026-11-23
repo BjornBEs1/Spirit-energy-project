@@ -57,7 +57,7 @@ namespace Spirit_energy_project
             controller.Draw(spriteBatch);
         }
 
-        public override void OnCollisionEnter(Collider other)
+        public override void OnTriggerEnter(Collider other)
         {
             if (other.Owner is Player player)
             {

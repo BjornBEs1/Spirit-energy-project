@@ -34,7 +34,7 @@ namespace Spirit_energy_project
             Name = "Player";
             collider = new BoxCollider
             {
-                IsTrigger = false,
+                IsTrigger = true,
             };
             AddComponent(collider);
             renderer = new SpriteRenderer();
