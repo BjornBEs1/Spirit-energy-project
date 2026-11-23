@@ -125,9 +125,21 @@ namespace Spirit_energy_project
             controller.Draw(spriteBatch);
             collider.DebugDraw(spriteBatch);
             // spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
+
             base.Draw(spriteBatch);
         }
-        
+
+        public override void OnTriggerEnter(Collider other)
+        {
+            hp--;
+            if (hp <= 0)
+            {
+                
+                Destroy();
+            }
+            base.OnTriggerEnter(other);
+        }
+
 
 
         public void Move(GameTime gameTime)
@@ -146,10 +158,6 @@ namespace Spirit_energy_project
         public void OnDamage(int dmg)
         {
             hp--;
-            if (hp <= 0)
-            {
-                Destroy();
-            }
         }
     }
 }
