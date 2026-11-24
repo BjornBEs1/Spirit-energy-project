@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Timers;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -26,15 +26,11 @@ namespace Spirit_energy_project
     {
         internal int Points { get; set; }
         private float speed = 200;
-        private bool isAttacking = false;
-        private bool isOnDelay = false;
-        public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
         public Vector2 Facing { get; set; }
         AnimationController controller;
         SpriteRenderer renderer;
         BoxCollider collider;
         PlayerWeapon ghostPunch;
-        Timer timer = new Timer(2000);
 
 
         public Player()
@@ -44,29 +40,27 @@ namespace Spirit_energy_project
             {
                 IsTrigger = true,
             };
-            timer.Elapsed += ResetAttack;
-            timer.Enabled = false;
-            timer.AutoReset = true;
             AddComponent(collider);
+
             renderer = new SpriteRenderer();
+            AddComponent(renderer);
+
             controller = new AnimationController(renderer);
-            addComponent(renderer);
-            addComponent(controller);
+            AddComponent(controller);
             controller.AnimationSpeed = 10;
             renderer.Origin = new Vector2(16, 8);
             renderer.LayerDepth = 0f;
         }
 
-        private void ResetAttack(object sender, ElapsedEventArgs e)
-        {
-            isAttacking = false;
-            timer.Stop();
-        }
-
         public override void Update(GameTime gameTime)
         {
+            if (GameWorld.Instance.SpiritEnergy.Energy <= 0)
+            {
+                Debug.WriteLine("player is dead");
+            }
 
             HandleInput();
+            
             Transform.Position += velocity * speed * Time.DeltaTime;
             if (velocity.X == 0)
             {
@@ -90,7 +84,7 @@ namespace Spirit_energy_project
 
             collider.OffsetX = -16;
             collider.OffsetY = -8;
-            Transform.Position = new Vector2(GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight)/2;
+            Transform.Position = new Vector2(GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight) / 2;
         }
         public override void LoadContents()
         {
@@ -102,7 +96,7 @@ namespace Spirit_energy_project
         protected void HandleInput()
         {
             velocity = Vector2.Zero;
-            
+
 
             if (Input.IsKeyDown(KeyCode.Up))
             {
@@ -144,13 +138,11 @@ namespace Spirit_energy_project
 
             if (Input.IsKeyDown(KeyCode.Space))
             {
-                if (!isAttacking)
-                {
-                    timer.Start();
-                    GameWorld.Instance.SpiritEnergy.RemoveEnergy(ghostPunch.EnergyCost);
-                    ghostPunch.Controller.AnimTime = 0;
-                    isAttacking = true;
-                }
+                ghostPunch.Attack();
+                // if (!isAttacking)
+                // {
+                //     isAttacking = true;
+                // }
             }
         }
 

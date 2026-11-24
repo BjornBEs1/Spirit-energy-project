@@ -45,10 +45,6 @@ namespace Spirit_energy_project
             currentTexture = ContentEngineManager.Instance.GetTexture2D(key);
         }
 
-        internal override void componentAdded(GameObject owner)
-        {
-        }
-
         public void SetSprite(object obj)
         {
             if (obj is Texture2D texture)
@@ -64,6 +60,10 @@ namespace Spirit_energy_project
                 srcRectangle = textureRegion.SourceRectangle;
                 SetSprite(textureRegion.Texture);
             }
+        }
+
+        internal override void componentAdded(GameObject owner)
+        {
         }
 
         public void Update()

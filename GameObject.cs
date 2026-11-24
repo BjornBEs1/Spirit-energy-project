@@ -42,7 +42,7 @@ namespace Spirit_energy_project
             components = new List<Component>();
 
             Transform = new Transform2D();
-            addComponent(Transform);
+            AddComponent(Transform);
         }
 
         public override int GetHashCode()

@@ -37,12 +37,6 @@ namespace Spirit_energy_project
             }
         }
 
-        internal override event Action<Collider> OnCollisionEnter;
-        internal override event Action<Collider> OnCollisionStay;
-        internal override event Action<Collider> OnCollisionExit;
-        internal override event Action<Collider> OnTriggerEnter;
-        internal override event Action<Collider> OnTriggerStay;
-        internal override event Action<Collider> OnTriggerExit;
 
         public BoxCollider()
         {
@@ -58,36 +52,10 @@ namespace Spirit_energy_project
         {
         }
 
-        internal override void callOnCollisionEnter(Collider other)
-        {
-            OnCollisionEnter.Invoke(other);
-        }
-        internal override void callOnCollisionStay(Collider other)
-        {
-            OnCollisionStay.Invoke(other);
-        }
-        internal override void callOnCollisionExit(Collider other)
-        {
-            OnCollisionExit.Invoke(other);
-        }
-        internal override void callOnTriggerEnter(Collider other)
-        {
-            OnTriggerEnter.Invoke(other);
-        }
-        internal override void callOnTriggerStay(Collider other)
-        {
-            OnTriggerStay.Invoke(other);
-        }
-        internal override void callOnTriggerExit(Collider other)
-        {
-            OnTriggerExit.Invoke(other);
-        }
-
         internal override void componentAdded(GameObject owner)
         {
         }
-        public override int GetHashCode()
-                    => HashCode.Combine(box, Bounds, OffsetX, OffsetY, IsTrigger, IsTouching, Owner);
+        public override int GetHashCode() => HashCode.Combine(box, Bounds, OffsetX, OffsetY, IsTrigger, IsTouching, Owner);
         public override bool Equals(object obj)
         {
             if (obj is CollisionPair other && Equals(other))

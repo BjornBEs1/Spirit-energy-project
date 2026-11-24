@@ -28,21 +28,39 @@ namespace Spirit_energy_project
 
         public bool IsTouching { get; private set; }
 
-        internal abstract event Action<Collider> OnCollisionEnter;
-        internal abstract event Action<Collider> OnCollisionStay;
-        internal abstract event Action<Collider> OnCollisionExit;
-        internal abstract event Action<Collider> OnTriggerEnter;
-        internal abstract event Action<Collider> OnTriggerStay;
-        internal abstract event Action<Collider> OnTriggerExit;
+        internal event Action<Collider> OnCollisionEnter;
+        internal event Action<Collider> OnCollisionStay;
+        internal event Action<Collider> OnCollisionExit;
+        internal event Action<Collider> OnTriggerEnter;
+        internal event Action<Collider> OnTriggerStay;
+        internal event Action<Collider> OnTriggerExit;
         public abstract void Update(Collider other);
         internal abstract Rectangle GetWorldBounds();
 
-        internal abstract void callOnCollisionEnter(Collider other);
-        internal abstract void callOnCollisionStay(Collider other);
-        internal abstract void callOnCollisionExit(Collider other);
-        internal abstract void callOnTriggerEnter(Collider other);
-        internal abstract void callOnTriggerStay(Collider other);
-        internal abstract void callOnTriggerExit(Collider other);
+        internal void callOnCollisionEnter(Collider other)
+        {
+            OnCollisionEnter.Invoke(other);
+        }
+        internal void callOnCollisionStay(Collider other)
+        {
+            OnCollisionStay.Invoke(other);
+        }
+        internal void callOnCollisionExit(Collider other)
+        {
+            OnCollisionExit.Invoke(other);
+        }
+        internal void callOnTriggerEnter(Collider other)
+        {
+            OnTriggerEnter.Invoke(other);
+        }
+        internal void callOnTriggerStay(Collider other)
+        {
+            OnTriggerStay.Invoke(other);
+        }
+        internal void callOnTriggerExit(Collider other)
+        {
+            OnTriggerExit.Invoke(other);
+        }
 
         public void DebugDraw(SpriteBatch spriteBatch)
         {

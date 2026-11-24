@@ -86,11 +86,11 @@ public class TileMap : Component, IRendererComponent
     {
     }
 
-    public void Update()
+    internal override void componentAdded(GameObject owner)
     {
     }
 
-    internal override void componentAdded(GameObject owner)
+    public void Update()
     {
     }
 

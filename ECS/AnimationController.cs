@@ -75,16 +75,6 @@ namespace Spirit_energy_project
             currentSheet = spriteSheetTexture[tileSetKey];
             animCount = currentSheet.Count;
         }
-        public void SetFrames(string[] _frames, string[] _paths)
-        {
-            frames.AddRange(_frames);
-            animCount = frames.Count;
-            textureFrames = new List<Texture2D>(frames.Count);
-            for (int i = 0; i < frames.Count; i++)
-            {
-                textureFrames.Add(null);
-            }
-        }
         public void SetFrame(string frame, string path)
         {
             ContentEngineManager.Instance.LoadTexture2D(frame, path);
