@@ -13,6 +13,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Timers;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -25,12 +27,16 @@ namespace Spirit_energy_project
         internal int Points { get; set; }
         private float speed = 200;
         private bool isAttacking = false;
+        private bool isOnDelay = false;
         public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
         public Vector2 Facing { get; set; }
         AnimationController controller;
         SpriteRenderer renderer;
         BoxCollider collider;
         PlayerWeapon ghostPunch;
+        Timer timer = new Timer(2000);
+
+
         public Player()
         {
             Name = "Player";
@@ -38,6 +44,9 @@ namespace Spirit_energy_project
             {
                 IsTrigger = true,
             };
+            timer.Elapsed += ResetAttack;
+            timer.Enabled = false;
+            timer.AutoReset = true;
             AddComponent(collider);
             renderer = new SpriteRenderer();
             controller = new AnimationController(renderer);
@@ -47,6 +56,13 @@ namespace Spirit_energy_project
             renderer.Origin = new Vector2(16, 8);
             renderer.LayerDepth = 0f;
         }
+
+        private void ResetAttack(object sender, ElapsedEventArgs e)
+        {
+            isAttacking = false;
+            timer.Stop();
+        }
+
         public override void Update(GameTime gameTime)
         {
 
@@ -86,6 +102,7 @@ namespace Spirit_energy_project
         protected void HandleInput()
         {
             velocity = Vector2.Zero;
+            
 
             if (Input.IsKeyDown(KeyCode.Up))
             {
@@ -129,12 +146,15 @@ namespace Spirit_energy_project
             {
                 if (!isAttacking)
                 {
+                    timer.Start();
                     GameWorld.Instance.SpiritEnergy.RemoveEnergy(ghostPunch.EnergyCost);
                     ghostPunch.Controller.AnimTime = 0;
                     isAttacking = true;
                 }
             }
         }
+
+
         private void NormalizeRotation()
         {
             if (Transform.Rotation > 0)
