@@ -98,7 +98,10 @@ namespace Spirit_energy_project
         {
             throw new NotImplementedException();
         }
-
+        public void ResetAnimation()
+        {
+            animTime = 0;
+        }
         public void Update()
         {
             animTime += Time.DeltaTime * AnimationSpeed;
