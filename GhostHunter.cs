@@ -201,11 +201,11 @@ namespace Spirit_energy_project
 
         public void OnDamage(int dmg)
         {
+            Transform.Position += ((GameWorld.Instance.Player.Facing * 1000) * Time.DeltaTime); //Knockback 
             if (!justHit)
             {
                 hp -= dmg;
                 justHit = true;
-                Transform.Position += ((GameWorld.Instance.Player.Facing * 1000) * Time.DeltaTime); //Knockback 
                 Debug.WriteLine($"Ghost hunter took {dmg} Damage");
             }
 
