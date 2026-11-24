@@ -120,11 +120,9 @@ namespace Spirit_energy_project
             if (!GameWorld.Instance.Player.IsAttacking)
             {
                 return;
-            }
-                
-                controller.Draw(spriteBatch);
-                collider.DebugDraw(spriteBatch);
-                //return;
+            }                
+            controller.Draw(spriteBatch);
+            //collider.DebugDraw(spriteBatch);
             base.Draw(spriteBatch);
         }
 

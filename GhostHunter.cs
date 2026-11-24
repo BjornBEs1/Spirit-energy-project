@@ -177,7 +177,7 @@ namespace Spirit_energy_project
                 spriteBatch.Draw(circle, Transform.Position + spriteRenderer.SpriteSize / 2, null, Color.LightGoldenrodYellow*0.5f, 0, new Vector2(160 / 2), 1, SpriteEffects.None, 0);
             }
             controller.Draw(spriteBatch);
-            collider.DebugDraw(spriteBatch);
+            //collider.DebugDraw(spriteBatch);
             // spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
             base.Draw(spriteBatch);
         }

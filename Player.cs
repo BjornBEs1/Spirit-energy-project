@@ -1,14 +1,4 @@
-﻿/*
- * File: Player.cs
- * File Created: 20 Nov 2026
- * Author: BjornBEs
- * -----
- * Last Modified: 20 Nov 2026
- * Modified By: BjornBEs
- * -----
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -18,8 +8,12 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Spirit_energy_project.InputSubsystem;
 
+
 namespace Spirit_energy_project
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Player : GameObject
     {
         internal int Points { get; set; }
@@ -49,7 +43,11 @@ namespace Spirit_energy_project
         }
         public override void Update(GameTime gameTime)
         {
-
+            if (GameWorld.Instance.SpiritEnergy.Energy <= 0)
+            {
+                GameWorld.Instance.SpiritEnergy.Energy = 0;
+                //Destroy();
+            }
             HandleInput();
             Transform.Position += velocity * speed * Time.DeltaTime;
             if (velocity.X == 0)
@@ -60,8 +58,7 @@ namespace Spirit_energy_project
         public override void Draw(SpriteBatch spriteBatch)
         {
             controller.Draw(spriteBatch);
-
-            collider.DebugDraw(spriteBatch);
+            //collider.DebugDraw(spriteBatch);
             //spriteBatch.Draw(ghostSprite, Transform.Position, null, Color.White, MathHelper.ToRadians(rotation), new Vector2(16, 8), 1f, SpriteEffects.None, 0f);
         }
         public override void Initialize()
