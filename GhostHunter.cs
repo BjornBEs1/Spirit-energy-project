@@ -80,7 +80,7 @@ namespace Spirit_energy_project
             hp = maxHp;
             speed = 50f;
             direction = Vector2.Zero;
-            int randomPosition = random.Next(1, 4);
+            int randomPosition = random.Next(1, 5);
             if (randomPosition == 1)
             {
                 Transform.Position = new Vector2(random.Next(0, GraphicsDeviceManager.DefaultBackBufferWidth), 0);
@@ -205,6 +205,7 @@ namespace Spirit_energy_project
             {
                 hp -= dmg;
                 justHit = true;
+                Transform.Position += ((GameWorld.Instance.Player.Facing * 1000) * Time.DeltaTime); //Knockback 
                 Debug.WriteLine($"Ghost hunter took {dmg} Damage ");
             }
 

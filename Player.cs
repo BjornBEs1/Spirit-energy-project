@@ -24,7 +24,8 @@ namespace Spirit_energy_project
     {
         internal int Points { get; set; }
         private float speed = 200;
-        protected bool isAttacking = false;
+        private bool isAttacking = false;
+        public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
         public Vector2 Facing { get; set; }
         AnimationController controller;
         SpriteRenderer renderer;
@@ -66,10 +67,11 @@ namespace Spirit_energy_project
         {
             Debug.WriteLine("Added Weapon");
             PlayerWeapon ghostPunch = new PlayerWeapon();
-            ghostPunch.Initialize();
+            //ghostPunch.Initialize();
             ghostPunch.LoadContents();
             ghostPunch.Name = $"ghostPunch";
             addChlid(ghostPunch, this);
+
             collider.OffsetX = -16;
             collider.OffsetY = -8;
             Transform.Position = new Vector2(GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight)/2;

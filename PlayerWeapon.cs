@@ -27,6 +27,7 @@ namespace Spirit_energy_project
         private Random damageRange = new Random();
         private int energyCost;
         public int EnergyCost { get => energyCost; }
+        private float attackTimer = 7.5f;
         private Texture2D sprite;
         AnimationController controller;
         SpriteRenderer renderer;
@@ -59,6 +60,15 @@ namespace Spirit_energy_project
         }
         public override void Update(GameTime gameTime)
         {
+            if (GameWorld.Instance.Player.IsAttacking)
+            {
+                attackTimer -= 1f;
+                if(attackTimer <= 0)
+                {
+                    GameWorld.Instance.Player.IsAttacking = false;
+                    attackTimer = 7.5f;
+                }
+            }
             Vector2 playerPos = GameWorld.Instance.Player.Transform.Position;
             Transform.Position = playerPos;
             if (GameWorld.Instance.Player.Facing.X > 0) //Right
@@ -95,6 +105,10 @@ namespace Spirit_energy_project
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            if (!GameWorld.Instance.Player.IsAttacking)
+            {
+                return;
+            }
             controller.Draw(spriteBatch);
             collider.DebugDraw(spriteBatch);
             base.Draw(spriteBatch);

@@ -24,8 +24,8 @@ public class SpiritEnergyMeter : GameObject
     SpriteRenderer MeterSprite;
     public SpiritEnergyMeter()
     {
-        Energy = 100;
         MaxEnergy = 100;
+        Energy = MaxEnergy;
         BackgroundSprite = new SpriteRenderer();
         AddComponent(BackgroundSprite);
         ForegroundSprite = new SpriteRenderer();

@@ -30,9 +30,11 @@ namespace Spirit_energy_project
             collider = new BoxCollider
             {
                 IsTrigger = true,
-                Bounds = new Vector2(10, 10)
+                Bounds = new Vector2(0, 0)
             };
             AddComponent(collider);
+            //collider.OffsetX = -5;
+            //collider.OffsetY = -5;
             SpriteRenderer spriteRenderer = new SpriteRenderer();
             AddComponent(spriteRenderer);
             controller = new AnimationController(spriteRenderer);
