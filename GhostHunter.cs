@@ -163,7 +163,11 @@ namespace Spirit_energy_project
             }
             else
             {
-                isAttacking = true;
+                if (!justHit)
+                {
+                    isAttacking = true;
+                }
+                
 
             }
 
