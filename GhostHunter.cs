@@ -155,7 +155,7 @@ namespace Spirit_energy_project
                 }
             }
 
-            if (Vector2.Distance(Transform.Center, playerPos) > 80f)
+            if (Vector2.Distance(Transform.Position, playerPos) > 80f)
             {
                 Move(gameTime);
                 isAttacking = false;
@@ -205,7 +205,7 @@ namespace Spirit_energy_project
             {
                 hp -= dmg;
                 justHit = true;
-                Debug.WriteLine($"Ghost hunter took {dmg} Damage ");
+                Debug.WriteLine($"Ghost hunter took {dmg} Damage");
             }
 
             if (hp <= 0)
