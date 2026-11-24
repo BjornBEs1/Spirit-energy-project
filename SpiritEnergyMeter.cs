@@ -27,10 +27,13 @@ public class SpiritEnergyMeter : GameObject
         MaxEnergy = 100;
         Energy = MaxEnergy;
         BackgroundSprite = new SpriteRenderer();
+        BackgroundSprite.LayerDepth = 1;
         AddComponent(BackgroundSprite);
         ForegroundSprite = new SpriteRenderer();
+        ForegroundSprite.LayerDepth = 0;
         AddComponent(ForegroundSprite);
         MeterSprite = new SpriteRenderer();
+        MeterSprite.LayerDepth = 0.2f;
         AddComponent(MeterSprite);
     }
 
@@ -41,7 +44,7 @@ public class SpiritEnergyMeter : GameObject
             return;
         }
         Energy += energy;
-        
+
         // limit it between 0 and MaxEnergy
         if (Energy > MaxEnergy)
         {
@@ -67,9 +70,8 @@ public class SpiritEnergyMeter : GameObject
         MeterSprite.SetSprite(sprite);
     }
 
-    public override void Draw(SpriteBatch spriteBatch)
+    public override void Update(GameTime gameTime)
     {
-        //Energy bar drawing
         float healthPercentage = MathHelper.Clamp((float)Energy / MaxEnergy, 0f, 1f);
         int currentBarWidth = (int)(128 * healthPercentage);
 
@@ -83,11 +85,14 @@ public class SpiritEnergyMeter : GameObject
         meterSpriteRect = MeterSprite.srcRectangle.Value;
         meterSpriteRect.Width = currentBarWidth;
         MeterSprite.srcRectangle = meterSpriteRect;
+    }
+
+    public override void Draw(SpriteBatch spriteBatch)
+    {
+        //Energy bar drawing
 
         BackgroundSprite.Draw(spriteBatch);
         ForegroundSprite.Draw(spriteBatch);
         MeterSprite.Draw(spriteBatch);
-
-        base.Draw(spriteBatch);
     }
 }
