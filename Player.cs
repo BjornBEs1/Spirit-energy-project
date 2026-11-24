@@ -43,6 +43,7 @@ namespace Spirit_energy_project
             addComponent(controller);
             controller.AnimationSpeed = 10;
             renderer.Origin = new Vector2(16, 8);
+            //renderer.LayerDepth = 10f;
         }
         public override void Update(GameTime gameTime)
         {
@@ -69,8 +70,9 @@ namespace Spirit_energy_project
             ghostPunch.LoadContents();
             ghostPunch.Name = $"ghostPunch";
             addChlid(ghostPunch, this);
-            // children.Add(ghostPunch);
-            Transform.Position = new Vector2(100, 100);
+            collider.OffsetX = -16;
+            collider.OffsetY = -8;
+            Transform.Position = new Vector2(GraphicsDeviceManager.DefaultBackBufferWidth, GraphicsDeviceManager.DefaultBackBufferHeight)/2;
         }
         public override void LoadContents()
         {
