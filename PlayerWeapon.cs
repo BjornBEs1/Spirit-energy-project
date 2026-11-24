@@ -37,6 +37,7 @@ namespace Spirit_energy_project
         public PlayerWeapon()
         {
             damage = damageRange.Next(4, 7);
+            energyCost = 12;
             renderer = new SpriteRenderer();
             controller = new AnimationController(renderer);
             collider.IsTrigger = true;
@@ -63,10 +64,14 @@ namespace Spirit_energy_project
         {
             if (GameWorld.Instance.Player.IsAttacking)
             {
-                //attackTimer -= 0.75f;
-                if(controller.AnimTime >= controller.AnimCount)
+                attackTimer -= 0.75f;
+                if (attackTimer <= 0)
                 {
                     GameWorld.Instance.Player.IsAttacking = false;
+                    attackTimer = 10;
+                }
+                if (controller.AnimTime >= controller.AnimCount)
+                {
                     controller.AnimTime = 0;
                 }
             }

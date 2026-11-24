@@ -121,7 +121,7 @@ namespace Spirit_energy_project
             if (isAttacking && suckTimer >= suckCooldown)
             {
                 suckTimer = 0f;
-                GameWorld.Instance.SpiritEnergy.Energy--;
+                GameWorld.Instance.SpiritEnergy.Energy -= 4;
             }
 
             if (dmgTakeTimer >= takeDmgCooldown)

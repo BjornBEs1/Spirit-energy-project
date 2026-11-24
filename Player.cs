@@ -129,8 +129,9 @@ namespace Spirit_energy_project
             {
                 if (!isAttacking)
                 {
-                ghostPunch.Controller.AnimTime = 0;
-                isAttacking = true;
+                    GameWorld.Instance.SpiritEnergy.Energy -= ghostPunch.EnergyCost;
+                    ghostPunch.Controller.AnimTime = 0;
+                    isAttacking = true;
                 }
             }
         }
