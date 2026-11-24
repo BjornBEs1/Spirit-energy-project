@@ -36,15 +36,13 @@ namespace Spirit_energy_project
         }
 
         public Vector2 Origin { get; set; }
-        public float LayerDepth { get; set; }
+
+        float layerDepth;
+        public float LayerDepth { get => layerDepth; set => layerDepth = value; }
 
         public void SetSprite(string key)
         {
             currentTexture = ContentEngineManager.Instance.GetTexture2D(key);
-        }
-
-        internal override void componentAdded(GameObject owner)
-        {
         }
 
         public void SetSprite(object obj)
@@ -62,6 +60,10 @@ namespace Spirit_energy_project
                 srcRectangle = textureRegion.SourceRectangle;
                 SetSprite(textureRegion.Texture);
             }
+        }
+
+        internal override void componentAdded(GameObject owner)
+        {
         }
 
         public void Update()

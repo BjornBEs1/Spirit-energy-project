@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Spirit_energy_project
 {
-    public class Tileset
+    public class TileSet
     {
         internal readonly TextureRegion[] _tiles;
 
@@ -20,7 +20,7 @@ namespace Spirit_energy_project
 
         public int Count { get; set; }
 
-        public Tileset(TextureRegion textureRegion, int tileWidth, int tileHeight)
+        public TileSet(TextureRegion textureRegion, int tileWidth, int tileHeight)
         {
             TileHeight = tileHeight;
             TileWidth = tileWidth;

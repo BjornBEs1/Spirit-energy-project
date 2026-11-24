@@ -114,7 +114,7 @@ namespace Spirit_energy_project
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.BackToFront);
             GameObjects.ForEach(x => x.intDraw(spriteBatch));
             spriteBatch.End();
 

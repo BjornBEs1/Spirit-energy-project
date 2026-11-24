@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -23,33 +24,47 @@ namespace Spirit_energy_project
     public class PlayerWeapon : GameObject
     {
         private int damage;
-        public int Damage { get=>damage; }
-        private Random damageRange = new Random();
+        public int Damage { get => damage; }
+
         private int energyCost;
         public int EnergyCost { get => energyCost; }
-        private float attackTimer = 10f;
-        private Texture2D sprite;
-        AnimationController controller;
-        public AnimationController Controller { get => controller; set => controller = value; }
-        SpriteRenderer renderer;
-        BoxCollider collider = new BoxCollider();
+
+        private Random damageRange = new Random();
+
+        private float attackTimer = 2000f;
+        private const float StartTimer = 2000f;
+
+        private AnimationController controller;
+        private SpriteRenderer renderer;
+        private BoxCollider collider;
+        
+        private bool isAttacking;
 
         public PlayerWeapon()
         {
+            isAttacking = false;
+
             damage = damageRange.Next(4, 7);
+            
             energyCost = 12;
+            
             renderer = new SpriteRenderer();
-            controller = new AnimationController(renderer);
-            collider.IsTrigger = true;
-            addComponent(renderer);
-            addComponent(controller);
-            addComponent(collider);
-            controller.AnimationSpeed = 16f;
             renderer.Origin = new Vector2(-16, 32);
+            AddComponent(renderer);
+
+            controller = new AnimationController(renderer);
+            controller.AnimationSpeed = 16f;
+            AddComponent(controller);
+
+            collider = new BoxCollider();
+            collider.IsTrigger = true;
+            AddComponent(collider);
+
         }
+
         public override void Initialize()
         {
-            
+
             base.Initialize();
         }
         public override void LoadContents()
@@ -60,19 +75,28 @@ namespace Spirit_energy_project
             controller.SetCurrentSheet("punch01");
             base.LoadContents();
         }
+
+        public void Attack()
+        {
+            if (attackTimer > 0)
+            {
+                return;
+            }
+            GameWorld.Instance.SpiritEnergy.RemoveEnergy(EnergyCost);
+            controller.AnimTime = 0;
+            isAttacking = true;
+            attackTimer = StartTimer;
+        }
+
         public override void Update(GameTime gameTime)
         {
-            if (GameWorld.Instance.Player.IsAttacking)
+            if (attackTimer > 0)
             {
-                attackTimer -= 0.75f;
+                attackTimer -= (float)gameTime.ElapsedGameTime.TotalMilliseconds;
                 if (attackTimer <= 0)
                 {
-                    GameWorld.Instance.Player.IsAttacking = false;
-                    attackTimer = 10;
-                }
-                if (controller.AnimTime >= controller.AnimCount)
-                {
-                    controller.AnimTime = 0;
+                    attackTimer = 0;
+                    isAttacking = false;
                 }
             }
             Vector2 playerPos = GameWorld.Instance.Player.Transform.Position;
@@ -105,42 +129,43 @@ namespace Spirit_energy_project
                 collider.OffsetX = -40;
                 collider.OffsetY = -56;
             }
-            if (!GameWorld.Instance.Player.IsAttacking)
+            if (!isAttacking)
             {
                 collider.IsTrigger = false;
             }
-            else { collider.IsTrigger = true; }
+            else
+            {
+                collider.IsTrigger = true;
+            }
+
+            if (isAttacking)
+            {
+                if (controller.AnimTime >= controller.AnimCount - 1)
+                {
+                    isAttacking = false;
+                }
+            }
 
             base.Update(gameTime);
         }
-        
+
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            if (!GameWorld.Instance.Player.IsAttacking)
+            if (!isAttacking)
             {
                 return;
-            }                
+            }
             controller.Draw(spriteBatch);
-            //collider.DebugDraw(spriteBatch);
+            collider.DebugDraw(spriteBatch);
             base.Draw(spriteBatch);
         }
 
         public override void OnCollisionStay(Collider other)
         {
-            if (other.Owner == null)
+            if (other.Owner is IEnemy enemy)
             {
-                return;
-            }
-            if (other.Owner.Name == null)
-            {
-                return;
-            }
-            
-            if (other.Owner.Name.StartsWith("ghost"))
-            {
-                IEnemy Ienemies = (IEnemy)other.Owner;
-                Ienemies.OnDamage(damage);
+                enemy.OnDamage(damage);
             }
 
             base.OnCollisionStay(other);

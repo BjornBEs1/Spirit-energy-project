@@ -63,11 +63,7 @@ namespace Spirit_energy_project
         {
             if (other.Owner is Player player)
             {
-                GameWorld.Instance.SpiritEnergy.Energy += 20;
-                if (GameWorld.Instance.SpiritEnergy.Energy > GameWorld.Instance.SpiritEnergy.MaxEnergy)
-                {
-                    GameWorld.Instance.SpiritEnergy.Energy = GameWorld.Instance.SpiritEnergy.MaxEnergy;
-                }
+                GameWorld.Instance.SpiritEnergy.AddEnergy(20);
                 Destroy();
             }
         }

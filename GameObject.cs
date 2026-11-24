@@ -42,7 +42,7 @@ namespace Spirit_energy_project
             components = new List<Component>();
 
             Transform = new Transform2D();
-            addComponent(Transform);
+            AddComponent(Transform);
         }
 
         public override int GetHashCode()
@@ -117,9 +117,9 @@ namespace Spirit_energy_project
         /// 
         /// </summary>
         /// <param name="rawGameObject"></param>
-        public void AddChlid(GameObject rawGameObject)
+        public void AddChild(GameObject rawGameObject)
         {
-            rawGameObject.addChlid(rawGameObject, this);
+            rawGameObject.addChild(rawGameObject, this);
         }
         public void Destroy()
         {
