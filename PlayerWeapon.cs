@@ -30,6 +30,7 @@ namespace Spirit_energy_project
         private float attackTimer = 10f;
         private Texture2D sprite;
         AnimationController controller;
+        public AnimationController Controller { get => controller; set => controller = value; }
         SpriteRenderer renderer;
         BoxCollider collider = new BoxCollider();
 
@@ -62,11 +63,11 @@ namespace Spirit_energy_project
         {
             if (GameWorld.Instance.Player.IsAttacking)
             {
-                attackTimer -= 0.75f;
-                if(attackTimer <= 0)
+                //attackTimer -= 0.75f;
+                if(controller.AnimTime >= controller.AnimCount)
                 {
                     GameWorld.Instance.Player.IsAttacking = false;
-                    attackTimer = 10f;
+                    controller.AnimTime = 0;
                 }
             }
             Vector2 playerPos = GameWorld.Instance.Player.Transform.Position;
@@ -115,8 +116,10 @@ namespace Spirit_energy_project
             {
                 return;
             }
-            controller.Draw(spriteBatch);
-            collider.DebugDraw(spriteBatch);
+                
+                controller.Draw(spriteBatch);
+                collider.DebugDraw(spriteBatch);
+                //return;
             base.Draw(spriteBatch);
         }
 

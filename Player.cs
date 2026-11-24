@@ -30,6 +30,7 @@ namespace Spirit_energy_project
         AnimationController controller;
         SpriteRenderer renderer;
         BoxCollider collider;
+        PlayerWeapon ghostPunch;
         public Player()
         {
             Name = "Player";
@@ -66,8 +67,7 @@ namespace Spirit_energy_project
         public override void Initialize()
         {
             Debug.WriteLine("Added Weapon");
-            PlayerWeapon ghostPunch = new PlayerWeapon();
-            //ghostPunch.Initialize();
+            ghostPunch = new PlayerWeapon();
             ghostPunch.LoadContents();
             ghostPunch.Name = $"ghostPunch";
             addChlid(ghostPunch, this);
@@ -82,8 +82,6 @@ namespace Spirit_energy_project
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_left", new Rectangle(0, 32, 128, 32), 32, 32);
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_down", new Rectangle(0, 64, 128, 32), 32, 32);
             controller.SetSpriteSheet("GhostSprite", "GhostSpriteSheet", "ghost_up", new Rectangle(0, 96, 128, 32), 32, 32);
-
-
         }
         protected void HandleInput()
         {
@@ -129,7 +127,11 @@ namespace Spirit_energy_project
 
             if (Input.IsKeyDown(KeyCode.Space))
             {
+                if (!isAttacking)
+                {
+                ghostPunch.Controller.AnimTime = 0;
                 isAttacking = true;
+                }
             }
         }
         private void NormalizeRotation()

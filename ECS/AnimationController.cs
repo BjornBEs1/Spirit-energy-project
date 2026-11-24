@@ -30,8 +30,10 @@ namespace Spirit_energy_project
         internal IRendererComponent renderer;
 
         int animCount;
+        public int AnimCount { get => animCount; set => animCount = value; }
         float animTime = 0;
         public float AnimationSpeed { get; set; }
+        public float AnimTime { get => animTime; set => animTime = value; }
 
         public AnimationController()
         {
