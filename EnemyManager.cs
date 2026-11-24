@@ -21,10 +21,13 @@ namespace Spirit_energy_project
 {
     internal class EnemyManager : GameObject
     {
-        
+        TileMap tileMap;
         public EnemyManager() 
         {
-            
+            tileMap = new TileMap(32, 32);
+            tileMap.Width = GameWorld.Instance.graphics.PreferredBackBufferWidth / 32;
+            tileMap.Height = GameWorld.Instance.graphics.PreferredBackBufferHeight / 32;
+            tileMap.LayerDepth = 1f;
         }
 
         public override void Initialize()
@@ -37,7 +40,10 @@ namespace Spirit_energy_project
         {
             ContentEngineManager.Instance.LoadTexture2D("GhostHunterSprite", "Enemy");
             ContentEngineManager.Instance.LoadTexture2D("SpiritOrbSprite", "SpiritOrb");
+            ContentEngineManager.Instance.LoadTexture2D("MapTiles", "TileFloor");
             
+            tileMap.SetSprite("MapTiles");
+
             base.LoadContents();
         }
 
@@ -60,9 +66,15 @@ namespace Spirit_energy_project
                 newGhostHunter.Initialize();
                 newGhostHunter.LoadContents();
                 newGhostHunter.Name = $"ghost{i}";
-                addChlid(newGhostHunter, this);
+                addChild(newGhostHunter, this);
                 // children.Add(newGhostHunter);
             }
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            tileMap.Draw(spriteBatch);
+            base.Draw(spriteBatch);
         }
     }
 }

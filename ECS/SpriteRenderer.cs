@@ -36,7 +36,9 @@ namespace Spirit_energy_project
         }
 
         public Vector2 Origin { get; set; }
-        public float LayerDepth { get; set; }
+
+        float layerDepth;
+        public float LayerDepth { get => layerDepth; set => layerDepth = value; }
 
         public void SetSprite(string key)
         {

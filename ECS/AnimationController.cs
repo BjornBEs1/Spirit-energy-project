@@ -21,10 +21,10 @@ namespace Spirit_energy_project
 {
     public class AnimationController : Component, IRendererComponent
     {
-        internal Dictionary<string, Tileset> spriteSheetTexture;
+        internal Dictionary<string, TileSet> spriteSheetTexture;
         internal TextureRegion textureRegion;
         internal Texture2D spriteSheetTexture2D;
-        internal Tileset currentSheet;
+        internal TileSet currentSheet;
         internal List<string> frames;
         internal List<Texture2D> textureFrames;
         internal IRendererComponent renderer;
@@ -34,6 +34,8 @@ namespace Spirit_energy_project
         float animTime = 0;
         public float AnimationSpeed { get; set; }
         public float AnimTime { get => animTime; set => animTime = value; }
+
+        public float LayerDepth { get => renderer.LayerDepth; set => renderer.LayerDepth = value; }
 
         public AnimationController()
         {
@@ -59,12 +61,12 @@ namespace Spirit_energy_project
         {
             if (spriteSheetTexture2D == null)
             {
-                spriteSheetTexture = new Dictionary<string, Tileset>();
+                spriteSheetTexture = new Dictionary<string, TileSet>();
                 ContentEngineManager.Instance.LoadTexture2D(sprite, path);
                 spriteSheetTexture2D = ContentEngineManager.Instance.GetTexture2D(sprite);
             }
             textureRegion = new TextureRegion(spriteSheetTexture2D, sourceRectangle);
-            currentSheet = new Tileset(textureRegion, spriteWidth, spriteHeight);
+            currentSheet = new TileSet(textureRegion, spriteWidth, spriteHeight);
             spriteSheetTexture.Add(tileSetKey, currentSheet);
             animCount = currentSheet.Count;
         }
@@ -113,7 +115,7 @@ namespace Spirit_energy_project
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            int animIndex = (int)Math.Clamp(animTime, 0, animCount);
+            int animIndex = (int)Math.Floor(Math.Clamp(animTime, 0, animCount));
             if (animCount == 1 && animIndex > 0)
             {
                 animIndex = 0;

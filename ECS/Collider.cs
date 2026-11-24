@@ -54,10 +54,10 @@ namespace Spirit_energy_project
             Rectangle left = new Rectangle(rect.X, rect.Y, 1, rect.Height);
             Rectangle right = new Rectangle(rect.X + rect.Width, rect.Y, 1, rect.Height);
 
-            spriteBatch.Draw(pixel, top, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 1);
-            spriteBatch.Draw(pixel, bottom, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 1);
-            spriteBatch.Draw(pixel, left, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 1);
-            spriteBatch.Draw(pixel, right, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 1);
+            spriteBatch.Draw(pixel, top, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(pixel, bottom, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(pixel, left, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 0);
+            spriteBatch.Draw(pixel, right, null, Color.Green, 0, Vector2.Zero, SpriteEffects.None, 0);
         }
     }
 }

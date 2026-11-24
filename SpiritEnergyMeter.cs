@@ -16,8 +16,8 @@ using Spirit_energy_project;
 
 public class SpiritEnergyMeter : GameObject
 {
-    internal int Energy;
-    internal int MaxEnergy;
+    internal float Energy;
+    internal float MaxEnergy;
 
     SpriteRenderer BackgroundSprite;
     SpriteRenderer ForegroundSprite;
@@ -32,6 +32,26 @@ public class SpiritEnergyMeter : GameObject
         AddComponent(ForegroundSprite);
         MeterSprite = new SpriteRenderer();
         AddComponent(MeterSprite);
+    }
+
+    public void AddEnergy(float energy)
+    {
+        if (Energy < 0)
+        {
+            return;
+        }
+        Energy += energy;
+        
+        // limit it between 0 and MaxEnergy
+        if (Energy > MaxEnergy)
+        {
+            Energy = MaxEnergy;
+        }
+    }
+
+    public void RemoveEnergy(float energy)
+    {
+        Energy -= energy;
     }
 
     public override void LoadContents()
@@ -50,17 +70,14 @@ public class SpiritEnergyMeter : GameObject
     public override void Draw(SpriteBatch spriteBatch)
     {
         //Energy bar drawing
-        /*         int barWidth = 200;
-                int barHeight = 14;
-                int posX = 20;
-                int posY = 50;
-                int borderThickness = 2; */
         float healthPercentage = MathHelper.Clamp((float)Energy / MaxEnergy, 0f, 1f);
         int currentBarWidth = (int)(128 * healthPercentage);
 
         Rectangle meterSpriteRect;
         if (!MeterSprite.srcRectangle.HasValue)
         {
+            // if this happens, then the whole engine if fucked.
+            // BjornBEs - 12:03, 24.11.2026 
             throw new Exception();
         }
         meterSpriteRect = MeterSprite.srcRectangle.Value;
@@ -70,47 +87,6 @@ public class SpiritEnergyMeter : GameObject
         BackgroundSprite.Draw(spriteBatch);
         ForegroundSprite.Draw(spriteBatch);
         MeterSprite.Draw(spriteBatch);
-
-        /* Color goldBorder = new Color(229, 193, 88);
-        Color darkGoldBg = new Color(75, 62, 28, 220);
-        Color cyanFill = new Color(124, 232, 255);
-        Color whiteGlow = new Color(240, 253, 255);
-
-        Color energyColor;
-        if (healthPercentage > 0.5f)
-        {
-            energyColor = Color.Lerp(Color.Yellow, Color.Green, (healthPercentage - 0.5f) * 2);
-        }
-        else
-        {
-            energyColor = Color.Lerp(Color.Red, Color.Yellow, healthPercentage * 2f);
-        }
-
-        // spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.PointClamp);
-
-        Texture2D pixel = ContentEngineManager.Instance.GetTexture2D("pixel");
-        //energy bar background
-        spriteBatch.Draw(pixel, new Rectangle(posX, posY, barWidth, barHeight), darkGoldBg);
-        spriteBatch.Draw(pixel, new Rectangle(posX, posY, currentBarWidth, barHeight), energyColor);
-
-        if (currentBarWidth > 0)
-        {
-            spriteBatch.Draw(pixel, new Rectangle(posX, posY, currentBarWidth, barHeight), cyanFill);
-            int glowHeight = Math.Max(2, barHeight / 3);
-            int glowY = posY + (barHeight - glowHeight) / 2;
-            spriteBatch.Draw(pixel, new Rectangle(posX, glowY, currentBarWidth, glowHeight), whiteGlow);
-        }
-        spriteBatch.Draw(pixel, new Rectangle(posX - borderThickness, posY - borderThickness, barWidth + borderThickness * 2, borderThickness), goldBorder);
-        spriteBatch.Draw(pixel, new Rectangle(posX - borderThickness, posY - borderThickness, barWidth + borderThickness * 2, borderThickness), goldBorder);
-        spriteBatch.Draw(pixel, new Rectangle(posX - borderThickness, posY, borderThickness, barHeight), goldBorder);
-        spriteBatch.Draw(pixel, new Rectangle(posX + barWidth, posY, borderThickness, barHeight), goldBorder); */
-
-        //energy bar border0
-        // if (energy <= 0)
-        // {
-        //     string winText = "WIN";
-        //     Debug.WriteLine(winText);
-        // }
 
         base.Draw(spriteBatch);
     }

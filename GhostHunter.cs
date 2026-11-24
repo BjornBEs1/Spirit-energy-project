@@ -58,8 +58,8 @@ namespace Spirit_energy_project
                     Vector2 diff = new Vector2(x, y) - center;
                     if (diff.LengthSquared() <= radius * radius)
                     {
-                        data[y * size + x] = new Color(255,255,0,128);
-                        
+                        data[y * size + x] = new Color(255, 255, 0, 128);
+
                     }
                     else
                     {
@@ -72,6 +72,7 @@ namespace Spirit_energy_project
 
             AddComponent(collider);
             spriteRenderer = new SpriteRenderer();
+            spriteRenderer.LayerDepth = 0f;
             AddComponent(spriteRenderer);
             controller = new AnimationController(spriteRenderer);
             AddComponent(controller);
@@ -121,7 +122,7 @@ namespace Spirit_energy_project
             if (isAttacking && suckTimer >= suckCooldown)
             {
                 suckTimer = 0f;
-                GameWorld.Instance.SpiritEnergy.Energy -= 4;
+                GameWorld.Instance.SpiritEnergy.RemoveEnergy(4);
             }
 
             if (dmgTakeTimer >= takeDmgCooldown)
@@ -129,7 +130,7 @@ namespace Spirit_energy_project
                 dmgTakeTimer = 0f;
                 justHit = false;
             }
-            
+
             direction = Vector2.Normalize(-difference);
             if (difference.X < 0)
             {
@@ -174,7 +175,7 @@ namespace Spirit_energy_project
         {
             if (isAttacking)
             {
-                spriteBatch.Draw(circle, Transform.Position + spriteRenderer.SpriteSize / 2, null, Color.LightGoldenrodYellow*0.5f, 0, new Vector2(160 / 2), 1, SpriteEffects.None, 0);
+                spriteBatch.Draw(circle, Transform.Position + spriteRenderer.SpriteSize / 2, null, Color.LightGoldenrodYellow * 0.5f, 0, new Vector2(160 / 2), 1, SpriteEffects.None, 0.5f);
             }
             controller.Draw(spriteBatch);
             collider.DebugDraw(spriteBatch);
@@ -193,7 +194,7 @@ namespace Spirit_energy_project
         {
             spiritOrb = new SpiritOrb(10);
             spiritOrb.Transform = Transform;
-            addChlid(spiritOrb, Parent);
+            addChild(spiritOrb, Parent);
             spiritOrb.Initialize();
             spiritOrb.LoadContents();
             base.OnDestroy();

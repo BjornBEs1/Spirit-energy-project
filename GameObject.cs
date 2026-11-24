@@ -117,9 +117,9 @@ namespace Spirit_energy_project
         /// 
         /// </summary>
         /// <param name="rawGameObject"></param>
-        public void AddChlid(GameObject rawGameObject)
+        public void AddChild(GameObject rawGameObject)
         {
-            rawGameObject.addChlid(rawGameObject, this);
+            rawGameObject.addChild(rawGameObject, this);
         }
         public void Destroy()
         {

@@ -45,7 +45,7 @@ namespace Spirit_energy_project
             addComponent(controller);
             controller.AnimationSpeed = 10;
             renderer.Origin = new Vector2(16, 8);
-            //renderer.LayerDepth = 10f;
+            renderer.LayerDepth = 0f;
         }
         public override void Update(GameTime gameTime)
         {
@@ -70,7 +70,7 @@ namespace Spirit_energy_project
             ghostPunch = new PlayerWeapon();
             ghostPunch.LoadContents();
             ghostPunch.Name = $"ghostPunch";
-            addChlid(ghostPunch, this);
+            addChild(ghostPunch, this);
 
             collider.OffsetX = -16;
             collider.OffsetY = -8;
@@ -129,7 +129,7 @@ namespace Spirit_energy_project
             {
                 if (!isAttacking)
                 {
-                    GameWorld.Instance.SpiritEnergy.Energy -= ghostPunch.EnergyCost;
+                    GameWorld.Instance.SpiritEnergy.RemoveEnergy(ghostPunch.EnergyCost);
                     ghostPunch.Controller.AnimTime = 0;
                     isAttacking = true;
                 }

@@ -64,17 +64,7 @@ namespace Spirit_energy_project
             children.ForEach((x) => x.intDraw(spriteBatch));
         }
 
-        internal void DrawBegin(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Begin(samplerState: SamplerState.PointWrap);
-        }
-
-        internal void DrawEnd(SpriteBatch spriteBatch)
-        {
-            spriteBatch.End();
-        }
-
-        internal void addChlid(GameObject gameObject, GameObject parent)
+        internal void addChild(GameObject gameObject, GameObject parent)
         {
             gameObject.Parent = parent;
             parent.children.Add(gameObject);
