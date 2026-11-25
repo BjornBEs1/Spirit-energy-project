@@ -60,7 +60,7 @@ namespace Spirit_energy_project
             {
                 GameWorld.Instance.SpiritEnergy.Energy = 0;
                 Debug.WriteLine("player is dead");
-                Destroy();
+                GameWorld.Instance.Exit();
             }
             HandleInput();            
             Transform.Position += velocity * speed * Time.DeltaTime;
