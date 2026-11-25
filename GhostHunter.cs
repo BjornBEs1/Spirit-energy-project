@@ -79,8 +79,8 @@ namespace Spirit_energy_project
             AddComponent(spriteRenderer);
 
             controller = new AnimationController(spriteRenderer);
-            controller.AnimationSpeed = 2.5f;
             AddComponent(controller);
+            controller.AnimationSpeed = 2.5f;
 
             maxHp = 10;
             hp = maxHp;
@@ -125,7 +125,7 @@ namespace Spirit_energy_project
             if (isAttacking && suckTimer >= suckCooldown)
             {
                 suckTimer = 0f;
-                GameWorld.Instance.SpiritEnergy.RemoveEnergy(4);
+                GameWorld.Instance.SpiritEnergy.RemoveEnergy(2);
             }
 
             if (dmgTakeTimer >= takeDmgCooldown)
