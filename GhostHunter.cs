@@ -1,11 +1,7 @@
 ﻿/*
  * File: GhostHunter.cs
  * File Created: 20 Nov 2026
- * Author: BjornBEs
- * -----
- * Last Modified: 20 Nov 2026
- * Modified By: BjornBEs
- * -----
+ * Author: Nicolai
  */
 
 using System;
@@ -44,6 +40,13 @@ namespace Spirit_energy_project
 
         Texture2D circle;
 
+
+        /// <summary>
+        /// Creates a circle for the ghost hunter (aoe sfx).
+        /// Adds a collider, spriteRender and a controler as component to ghost hunter.
+        /// Sets stats: MaxHP, hp, Speed and direction.
+        /// Chooses a random position at the edge of the screen to spawn at.
+        /// </summary>
         public GhostHunter()
         {
             int size = 160;
@@ -106,6 +109,9 @@ namespace Spirit_energy_project
             }
         }
 
+        /// <summary>
+        /// Sets the spritesheet used (Spirte, path, tileSetKey, source rectangle, spriteWidth, spriteHeight)
+        /// </summary>
         public override void LoadContents()
         {
             controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "LeftWalk", new Rectangle(0, 0, 64, 32), 32, 32);
@@ -114,6 +120,13 @@ namespace Spirit_energy_project
             controller.SetSpriteSheet("HunterSpriteSheet", "Enemy", "AttackLeft", new Rectangle(0, 0, 32, 32), 32, 32);
             base.LoadContents();
         }
+
+        /// <summary>
+        /// Holds ghost hunters game logic: 
+        ///     -   Movement
+        ///     -   Attack
+        ///     -   Animation
+        /// </summary>
         public override void Update(GameTime gameTime)
         {
             Vector2 playerPos = GameWorld.Instance.Player.Transform.Position;
@@ -173,6 +186,11 @@ namespace Spirit_energy_project
             }
 
         }
+
+        /// <summary>
+        /// Checks if the ghost hunter is attacking.
+        /// If the ghost hunter is attacking then draw a circle (aoe sfx).
+        /// </summary>
         public override void Draw(SpriteBatch spriteBatch)
         {
             if (isAttacking)
@@ -184,6 +202,10 @@ namespace Spirit_energy_project
             // spriteBatch.Draw(sprite, Transform.Position, CurrentSprite, Color.White);
         }
 
+        /// <summary>
+        /// Spawns a spiritorb at the ghost hunters position.
+        /// Removes the ghost hunter.
+        /// </summary>
         public override void OnDestroy()
         {
             SpiritOrb spiritOrb = new SpiritOrb(10);
@@ -194,6 +216,9 @@ namespace Spirit_energy_project
             base.OnDestroy();
         }
 
+        /// <summary>
+        /// Handles how ghost hunters take damage.
+        /// </summary>
         public void OnDamage(int dmg)
         {
             Transform.Position += GameWorld.Instance.Player.Facing * 1000 * Time.DeltaTime; //Knockback 
