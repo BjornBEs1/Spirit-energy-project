@@ -1,11 +1,7 @@
 ﻿/*
  * File: EnemyManager.cs
  * File Created: 20 Nov 2026
- * Author: BjornBEs
- * -----
- * Last Modified: 20 Nov 2026
- * Modified By: BjornBEs
- * -----
+ * Author: Nicolai
  */
 
 using Microsoft.Xna.Framework;
@@ -35,7 +31,10 @@ namespace Spirit_energy_project
             
             base.Initialize();
         }
-
+        
+        /// <summary>
+        /// Loads ghost hunter and spiritorb sprites
+        /// </summary>
         public override void LoadContents()
         {
             ContentEngineManager.Instance.LoadTexture2D("GhostHunterSprite", "Enemy");
@@ -47,6 +46,11 @@ namespace Spirit_energy_project
             base.LoadContents();
         }
 
+
+        /// <summary>
+        /// Checks if all ghost hunter are dead.
+        /// if all ghost hunters are dead then start a new round.
+        /// </summary>
         public override void Update(GameTime gameTime)
         {
             if (this.children.Count <= 0)
@@ -57,6 +61,13 @@ namespace Spirit_energy_project
 
             base.Update(gameTime);
         }
+
+
+        /// <summary>
+        /// Loads ghost hunters content.
+        /// Set each ghost hunters name to ghost{i} (ghost{1,2,3,4,5}).
+        /// Adds the ghost hunters as children of the enemy manager
+        /// </summary>
         public void SpawnRound()
         {
             for (int i = 0; i < 5 + GameWorld.Instance.rounds; i++)
@@ -71,6 +82,7 @@ namespace Spirit_energy_project
             }
         }
 
+        //Draws spritebatch
         public override void Draw(SpriteBatch spriteBatch)
         {
             tileMap.Draw(spriteBatch);
